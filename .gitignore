@@ -1,0 +1,74 @@
+# =========================
+# Visual Studio / .NET
+# =========================
+
+## Diretórios de build
+bin/
+obj/
+[Bb]uild/
+[Dd]ebug*/
+[Rr]elease*/
+[Bb]in/
+[Oo]bj/
+[Bb]in/[Dd]ebug/
+[Oo]bj/[Dd]ebug/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+## Arquivos de cache e temporários
+.vs/
+*.pdb
+*.user
+*.suo
+*.cache
+*.log
+*.tlog
+*.ilk
+*.aps
+*.ncb
+*.opendb
+*.VC.db
+*.userosscache
+*.sln.docstates
+
+## Arquivos de dependências locais
+*.dll
+*.exe
+
+# Deixar pacotes de NuGet fora
+packages/
+*.nupkg
+# (se quiser versionar o packages.config, mantenha apenas ele)
+
+## Diretórios do Visual Studio
+.vs/
+.vscode/
+_ReSharper*/
+*.DotSettings.user
+
+## Arquivos de configuração locais de dev
+*.userosscache
+*.sln.docstates
+
+# Publicação temporária
+*.Publish.xml
+publish/
+*.pubxml
+*.pubxml.user
+
+## Configurações do Windows
+Thumbs.db
+Desktop.ini
+
+# Testes
+TestResults/
+*.coverage
+*.coveragexml
+*.trx
+
+# Outros temporários
+*.tmp
+*.bak
+*.old
