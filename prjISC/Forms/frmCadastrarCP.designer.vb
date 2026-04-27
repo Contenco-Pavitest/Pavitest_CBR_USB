@@ -39,7 +39,6 @@ Partial Class frmCadastrarCP
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCadastrarCP))
         Me.frmFrame2 = New System.Windows.Forms.GroupBox()
         Me.bdnNavegator = New System.Windows.Forms.BindingNavigator(Me.components)
-        Me.bdnSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.tsbCount = New System.Windows.Forms.ToolStripLabel()
         Me.tsbMoverFirst = New System.Windows.Forms.ToolStripButton()
         Me.tsbMoverPrevious = New System.Windows.Forms.ToolStripButton()
@@ -193,16 +192,18 @@ Partial Class frmCadastrarCP
         Me.ToolStripButton6 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton7 = New System.Windows.Forms.ToolStripButton()
         Me.btnResultado = New System.Windows.Forms.Button()
+        Me.bdnSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.btnBuscarCilindro = New System.Windows.Forms.Button()
         Me.frmFrame2.SuspendLayout()
         CType(Me.bdnNavegator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.bdnNavegator.SuspendLayout()
-        CType(Me.bdnSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tbcCP.SuspendLayout()
         Me.tbpCompactacao.SuspendLayout()
         Me.tbpExpansao.SuspendLayout()
         Me.tbpPenetracao.SuspendLayout()
         Me.frmFrame1.SuspendLayout()
         Me.pnlPanel.SuspendLayout()
+        CType(Me.bdnSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'frmFrame2
@@ -274,6 +275,7 @@ Partial Class frmCadastrarCP
         '
         Me.tsbPosition.AccessibleName = "Position"
         Me.tsbPosition.AutoSize = False
+        Me.tsbPosition.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.tsbPosition.Name = "tsbPosition"
         Me.tsbPosition.Size = New System.Drawing.Size(50, 21)
         Me.tsbPosition.Text = "0"
@@ -368,6 +370,7 @@ Partial Class frmCadastrarCP
         'tbpCompactacao
         '
         Me.tbpCompactacao.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.tbpCompactacao.Controls.Add(Me.btnBuscarCilindro)
         Me.tbpCompactacao.Controls.Add(Me.txtAltura)
         Me.tbpCompactacao.Controls.Add(Me.Label12)
         Me.tbpCompactacao.Controls.Add(Me.Label13)
@@ -2097,6 +2100,7 @@ Partial Class frmCadastrarCP
         '
         Me.ToolStripTextBox1.AccessibleName = "Position"
         Me.ToolStripTextBox1.AutoSize = False
+        Me.ToolStripTextBox1.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.ToolStripTextBox1.Name = "ToolStripTextBox1"
         Me.ToolStripTextBox1.Size = New System.Drawing.Size(50, 21)
         Me.ToolStripTextBox1.Text = "0"
@@ -2161,6 +2165,15 @@ Partial Class frmCadastrarCP
         Me.btnResultado.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.btnResultado.UseVisualStyleBackColor = True
         '
+        'btnBuscarCilindro
+        '
+        Me.btnBuscarCilindro.Image = CType(resources.GetObject("btnBuscarCilindro.Image"), System.Drawing.Image)
+        Me.btnBuscarCilindro.Location = New System.Drawing.Point(297, 16)
+        Me.btnBuscarCilindro.Name = "btnBuscarCilindro"
+        Me.btnBuscarCilindro.Size = New System.Drawing.Size(32, 23)
+        Me.btnBuscarCilindro.TabIndex = 310
+        Me.btnBuscarCilindro.UseVisualStyleBackColor = True
+        '
         'frmCadastrarCP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2186,7 +2199,6 @@ Partial Class frmCadastrarCP
         CType(Me.bdnNavegator, System.ComponentModel.ISupportInitialize).EndInit()
         Me.bdnNavegator.ResumeLayout(False)
         Me.bdnNavegator.PerformLayout()
-        CType(Me.bdnSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tbcCP.ResumeLayout(False)
         Me.tbpCompactacao.ResumeLayout(False)
         Me.tbpCompactacao.PerformLayout()
@@ -2197,6 +2209,7 @@ Partial Class frmCadastrarCP
         Me.frmFrame1.ResumeLayout(False)
         Me.frmFrame1.PerformLayout()
         Me.pnlPanel.ResumeLayout(False)
+        CType(Me.bdnSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2361,4 +2374,5 @@ Partial Class frmCadastrarCP
     Public WithEvents Label24 As Label
     Public WithEvents Label26 As Label
     Public WithEvents lblTipoEnsaio As Label
+    Friend WithEvents btnBuscarCilindro As Button
 End Class

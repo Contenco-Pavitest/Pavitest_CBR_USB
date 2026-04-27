@@ -440,6 +440,8 @@ Friend Class frmCadastrarCP
     Private Sub tsbAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbAdd.Click
 
         Try
+            tbcCP.SelectedIndex = 0
+
             'Limpar campos do ensaio
             Call LimparEnsaio()
 
@@ -1082,7 +1084,7 @@ Friend Class frmCadastrarCP
 
     Private Sub txtCapsula_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCapsula.KeyPress
         'Válidar valores numéricos
-        e.KeyChar = ChrW(usrDiversos.VNumerico(txtCapsula, Asc(e.KeyChar), True, True, False, False))
+        'e.KeyChar = ChrW(usrDiversos.VNumerico(txtCapsula, Asc(e.KeyChar), True, True, False, False))
     End Sub
 
     Private Sub txtCorrigida0_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCorrigida0.KeyPress
@@ -1198,32 +1200,7 @@ Friend Class frmCadastrarCP
 #Region "CILINDRO"
 
     Private Sub cmbCilindro_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbCilindro.SelectedIndexChanged
-        'Carregar os dados do cilindro
-        Dim odbReader As OleDbDataReader
-        Dim strSql As String
-        Dim cilindro As String
-
-        Try
-            cilindro = cmbCilindro.SelectedItem
-            strSql = "SELECT * FROM tblCilindro WHERE Nome = '" & cilindro & "'"
-
-            'Comando de leitura do banco de dados
-            odbReader = usrConexao.ComandoLeitura(strSql)
-            'Leitura
-
-
-            While odbReader.Read()
-                If Not IsDBNull(odbReader("Peso".ToString)) Then txtPeso.Text = odbReader("Peso".ToString)
-                If Not IsDBNull(odbReader("Volume".ToString)) Then txtVolume.Text = odbReader("Volume".ToString)
-                If Not IsDBNull(odbReader("Altura".ToString)) Then txtAltura.Text = odbReader("Altura".ToString)
-            End While
-
-        Catch ex As Exception
-            MsgBox("cmbCilindro_SelectedIndexChanged()" & Chr(13) & ex.Message)
-            'Call usrDiversos.ExibeErros("cmbCilindro_SelectedIndexChanged" & Chr(13) & "cmbCilindro_SelectedIndexChanged" & Chr(13) & "Erro número: " & Err.Number & Chr(13) & "Descrição: " & ex.Message)
-            Exit Sub
-        End Try
-
+        Call BuscarCilindro()
     End Sub
 
     Public Sub CarregarCilindro()
@@ -1499,6 +1476,76 @@ Friend Class frmCadastrarCP
 
     End Sub
 
+    Private Sub BuscarCilindro()
+        'Carregar os dados do cilindro
+        Dim odbReader As OleDbDataReader
+        Dim strSql As String
+        Dim cilindro As String
+
+        Try
+            cilindro = cmbCilindro.Text
+            strSql = "SELECT * FROM tblCilindro WHERE Nome = '" & cilindro & "'"
+
+            'Comando de leitura do banco de dados
+            odbReader = usrConexao.ComandoLeitura(strSql)
+            'Leitura
+
+
+            While odbReader.Read()
+                If Not IsDBNull(odbReader("Peso".ToString)) Then txtPeso.Text = odbReader("Peso".ToString)
+                If Not IsDBNull(odbReader("Volume".ToString)) Then txtVolume.Text = odbReader("Volume".ToString)
+                If Not IsDBNull(odbReader("Altura".ToString)) Then txtAltura.Text = odbReader("Altura".ToString)
+            End While
+
+        Catch ex As Exception
+            MsgBox("cmbCilindro_SelectedIndexChanged()" & Chr(13) & ex.Message)
+            'Call usrDiversos.ExibeErros("cmbCilindro_SelectedIndexChanged" & Chr(13) & "cmbCilindro_SelectedIndexChanged" & Chr(13) & "Erro número: " & Err.Number & Chr(13) & "Descrição: " & ex.Message)
+            Exit Sub
+        End Try
+    End Sub
+
+    Private Sub PreencherDatasExpansao()
+        Try
+            Dim dataBase As DateTime
+            Dim odbReader As OleDbDataReader
+
+            Dim strSql As String = "SELECT Data FROM tblAmostra WHERE IdAmostra = " & intIdAmostra
+
+            'Comando de leitura do banco de dados
+            odbReader = usrConexao.ComandoLeitura(strSql)
+            'Leitura
+
+            If odbReader IsNot Nothing AndAlso odbReader.Read() Then
+
+                If Not IsDBNull(odbReader("Data")) Then
+                    dataBase = Convert.ToDateTime(odbReader("Data"))
+
+                    ' Preenche sequencialmente
+                    mskData0.Text = dataBase.ToString("dd/MM/yyyy")
+                    mskData1.Text = dataBase.AddDays(1).ToString("dd/MM/yyyy")
+                    mskData2.Text = dataBase.AddDays(2).ToString("dd/MM/yyyy")
+                    mskData3.Text = dataBase.AddDays(3).ToString("dd/MM/yyyy")
+                    mskData4.Text = dataBase.AddDays(4).ToString("dd/MM/yyyy")
+                Else
+                    LimparDatas()
+                End If
+
+            Else
+                LimparDatas()
+            End If
+        Catch ex As Exception
+            MsgBox("PreencherDatasExpansao()" & Chr(13) & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub LimparDatas()
+        mskData0.Text = ""
+        mskData1.Text = ""
+        mskData2.Text = ""
+        mskData3.Text = ""
+        mskData4.Text = ""
+    End Sub
+
 #End Region
 
 #Region "LOCAIS ONDE OS CÁLCULOS DOS CAMPOS NÃO OBRIGATÓRIOS SÃO CHAMADOS"
@@ -1658,6 +1705,12 @@ Friend Class frmCadastrarCP
 
         If tbcCP.SelectedIndex = 2 Then
             Call FormataTabela()
+        ElseIf tbcCP.SelectedIndex = 1 Then
+            Call PreencherDatasExpansao()
         End If
+    End Sub
+
+    Private Sub btnBuscarCilindro_Click(sender As Object, e As EventArgs) Handles btnBuscarCilindro.Click
+        Call BuscarCilindro()
     End Sub
 End Class

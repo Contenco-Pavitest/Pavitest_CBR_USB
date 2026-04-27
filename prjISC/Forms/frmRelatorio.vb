@@ -24,6 +24,8 @@ Public Class frmRelatorio
     Private Sub CrystalReport_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cryViewer.Load
 
         Try
+            Call AjusteUnidadeMedida()
+
             'Chamar a rotina para carregar os valores dos campos
             Select Case intRelatorio
                 Case rpt_ENSAIOS
@@ -88,6 +90,7 @@ Public Class frmRelatorio
             If intRelatorio = rpt_ENSAIOS Then
                 If blnGrafico Then dstRow.Grafico = AbrirImagem(strEndereco & "\Imagens\Grafico.bmp")
             ElseIf intRelatorio = rpt_RESULTADOS Then
+                If blnGrafico Then dstRow.Grafico = AbrirImagem(strEndereco & "\Imagens\Grafico.bmp")
                 If blnGrafico Then dstRow.Grafico1 = AbrirImagem(strEndereco & "\Imagens\Grafico1.bmp")
                 If blnGrafico Then dstRow.Grafico2 = AbrirImagem(strEndereco & "\Imagens\Grafico2.bmp")
                 If blnGrafico Then dstRow.Grafico3 = AbrirImagem(strEndereco & "\Imagens\Grafico3.bmp")
@@ -145,11 +148,21 @@ Public Class frmRelatorio
                 With cryEnsaios
                     'Dados cadastrais da amostra
                     If Not IsDBNull(odbReader("Nome".ToString)) Then .SetParameterValue("NomeAmostra", odbReader("Nome".ToString)) Else .SetParameterValue("NomeAmostra", "")
-                    If Not IsDBNull(odbReader("Programa".ToString)) Then .SetParameterValue("Programa", odbReader("Programa".ToString)) Else .SetParameterValue("Programa", "")
-                    If Not IsDBNull(odbReader("Numero".ToString)) Then .SetParameterValue("Numero", odbReader("Numero".ToString)) Else .SetParameterValue("Numero", "")
-                    If Not IsDBNull(odbReader("Data".ToString)) Then .SetParameterValue("Data", odbReader("Data".ToString)) Else .SetParameterValue("Data", "")
-                    If Not IsDBNull(odbReader("Responsavel".ToString)) Then .SetParameterValue("Responsavel", odbReader("Responsavel".ToString)) Else .SetParameterValue("Responsavel", "")
-                    If Not IsDBNull(odbReader("Compactacao".ToString)) Then .SetParameterValue("Compactacao", odbReader("Compactacao".ToString)) Else .SetParameterValue("Compactacao", "")
+                    If Not IsDBNull(odbReader("Cliente")) Then .SetParameterValue("Cliente", odbReader("Cliente")) Else .SetParameterValue("Cliente", "")
+                    If Not IsDBNull(odbReader("Obra")) Then .SetParameterValue("Obra", odbReader("Obra")) Else .SetParameterValue("Obra", "")
+                    If Not IsDBNull(odbReader("LocalAmostra")) Then .SetParameterValue("Local", odbReader("LocalAmostra")) Else .SetParameterValue("Local", "")
+                    If Not IsDBNull(odbReader("TipoMaterial")) Then .SetParameterValue("TipoMaterial", odbReader("TipoMaterial")) Else .SetParameterValue("TipoMaterial", "")
+                    If Not IsDBNull(odbReader("Operador")) Then .SetParameterValue("Operador", odbReader("Operador")) Else .SetParameterValue("Operador", "")
+                    If Not IsDBNull(odbReader("Responsavel")) Then .SetParameterValue("Responsavel", odbReader("Responsavel")) Else .SetParameterValue("Responsavel", "")
+
+                    If Not IsDBNull(odbReader("TituloCampoExtra")) Then .SetParameterValue("TituloExtra1", odbReader("TituloCampoExtra")) Else .SetParameterValue("TituloExtra1", "")
+                    If Not IsDBNull(odbReader("ValorCampoExtra")) Then .SetParameterValue("ValorExtra1", odbReader("ValorCampoExtra")) Else .SetParameterValue("ValorExtra1", "")
+
+                    If Not IsDBNull(odbReader("TituloCampoExtra2")) Then .SetParameterValue("TituloExtra2", odbReader("TituloCampoExtra2")) Else .SetParameterValue("TituloExtra2", "")
+                    If Not IsDBNull(odbReader("ValorCampoExtra2")) Then .SetParameterValue("ValorExtra2", odbReader("ValorCampoExtra2")) Else .SetParameterValue("ValorExtra2", "")
+
+                    If Not IsDBNull(odbReader("Data")) Then .SetParameterValue("Data", odbReader("Data")) Else .SetParameterValue("Data", "")
+                    If Not IsDBNull(odbReader("Compactacao")) Then .SetParameterValue("Compactacao", odbReader("Compactacao")) Else .SetParameterValue("Compactacao", "")
                 End With
             End If
 
@@ -157,11 +170,21 @@ Public Class frmRelatorio
                 With cryResultados
                     'Dados cadstrais da amostra
                     If Not IsDBNull(odbReader("Nome".ToString)) Then .SetParameterValue("NomeAmostra", odbReader("Nome".ToString)) Else .SetParameterValue("NomeAmostra", "")
-                    If Not IsDBNull(odbReader("Programa".ToString)) Then .SetParameterValue("Programa", odbReader("Programa".ToString)) Else .SetParameterValue("Programa", "")
-                    If Not IsDBNull(odbReader("Numero".ToString)) Then .SetParameterValue("Numero", odbReader("Numero".ToString)) Else .SetParameterValue("Numero", "")
-                    If Not IsDBNull(odbReader("Data".ToString)) Then .SetParameterValue("Data", odbReader("Data".ToString)) Else .SetParameterValue("Data", "")
-                    If Not IsDBNull(odbReader("Responsavel".ToString)) Then .SetParameterValue("Responsavel", odbReader("Responsavel".ToString)) Else .SetParameterValue("Responsavel", "")
-                    If Not IsDBNull(odbReader("Compactacao".ToString)) Then .SetParameterValue("Compactacao", odbReader("Compactacao".ToString)) Else .SetParameterValue("Compactacao", "")
+                    If Not IsDBNull(odbReader("Cliente")) Then .SetParameterValue("Cliente", odbReader("Cliente")) Else .SetParameterValue("Cliente", "")
+                    If Not IsDBNull(odbReader("Obra")) Then .SetParameterValue("Obra", odbReader("Obra")) Else .SetParameterValue("Obra", "")
+                    If Not IsDBNull(odbReader("LocalAmostra")) Then .SetParameterValue("Local", odbReader("LocalAmostra")) Else .SetParameterValue("Local", "")
+                    If Not IsDBNull(odbReader("TipoMaterial")) Then .SetParameterValue("TipoMaterial", odbReader("TipoMaterial")) Else .SetParameterValue("TipoMaterial", "")
+                    If Not IsDBNull(odbReader("Operador")) Then .SetParameterValue("Operador", odbReader("Operador")) Else .SetParameterValue("Operador", "")
+                    If Not IsDBNull(odbReader("Responsavel")) Then .SetParameterValue("Responsavel", odbReader("Responsavel")) Else .SetParameterValue("Responsavel", "")
+
+                    If Not IsDBNull(odbReader("TituloCampoExtra")) Then .SetParameterValue("TituloExtra1", odbReader("TituloCampoExtra")) Else .SetParameterValue("TituloExtra1", "")
+                    If Not IsDBNull(odbReader("ValorCampoExtra")) Then .SetParameterValue("ValorExtra1", odbReader("ValorCampoExtra")) Else .SetParameterValue("ValorExtra1", "")
+
+                    If Not IsDBNull(odbReader("TituloCampoExtra2")) Then .SetParameterValue("TituloExtra2", odbReader("TituloCampoExtra2")) Else .SetParameterValue("TituloExtra2", "")
+                    If Not IsDBNull(odbReader("ValorCampoExtra2")) Then .SetParameterValue("ValorExtra2", odbReader("ValorCampoExtra2")) Else .SetParameterValue("ValorExtra2", "")
+
+                    If Not IsDBNull(odbReader("Data")) Then .SetParameterValue("Data", odbReader("Data")) Else .SetParameterValue("Data", "")
+                    If Not IsDBNull(odbReader("Compactacao")) Then .SetParameterValue("Compactacao", odbReader("Compactacao")) Else .SetParameterValue("Compactacao", "")
                 End With
 
             End If
@@ -310,14 +333,32 @@ Public Class frmRelatorio
     'O problema está aqui
     Public Sub ListarDadosCP()
         Dim strSql As String
+        Dim strSql2 As String
         Dim odbAdaptador As OleDbDataAdapter
         Dim tblTable As DataTable
+        Dim odbReader As OleDbDataReader
 
         Try
-            'Selecionar os dados da amostra 
-            strSql = "SELECT MassaSeca, Expansao, Umidade, ISC1, ISC2 " _
+            'Selecionar os dados do corpo de prova
+            strSql2 = "SELECT * FROM [tblCPs] " _
+                & "WHERE IdAmostra = " & intIdAmostra & " AND IdCP = " & intIdCP
+
+            'Comando de leitura do banco de dados
+            odbReader = usrConexao.ComandoLeitura(strSql2)
+            'Leitura
+            Call odbReader.Read()
+
+            If odbReader("ISC1") > odbReader("ISC2") Then
+                'Selecionar os dados da amostra 
+                strSql = "SELECT IdCP, Cilindro, MassaSeca, Expansao, Umidade, ISC1 " _
                     & " FROM [tblCPs] " _
                     & "WHERE IdAmostra = " & intIdAmostra & " " & strCondicao & " ORDER BY IdCP"
+            Else
+                'Selecionar os dados da amostra 
+                strSql = "SELECT IdCP, Cilindro, MassaSeca, Expansao, Umidade, ISC2 " _
+                    & " FROM [tblCPs] " _
+                    & "WHERE IdAmostra = " & intIdAmostra & " " & strCondicao & " ORDER BY IdCP"
+            End If
 
             'Criar o comando Adaptador
             odbAdaptador = New OleDbDataAdapter(strSql, oConnection)
@@ -327,6 +368,10 @@ Public Class frmRelatorio
             'Link para a barra de ferramentas
             cryResultados.SetDataSource(tblTable)
 
+            'Verificação para caso a coluna não tiver nenhum valor, não apresentar o título dela no relatório
+            SetTituloSeColunaTemValor(tblTable, "MassaSeca", "TituloMassa", "Massa Esp. Ap. S. (g/cm³)")
+            SetTituloSeColunaTemValor(tblTable, "Umidade", "TituloTeor", "Teor de Umidade (%)")
+            SetTituloSeColunaTemValor(tblTable, "Expansao", "TituloExpansao", "Expansão (%)")
         Catch ex As Exception
             'Mensagem de erro
             MsgBox("ListarDadosCP" & Chr(13) & ex.Message)
@@ -443,7 +488,49 @@ Public Class frmRelatorio
 
     End Sub
 
+    Private Function ColunaTemValor(tbl As DataTable, nomeColuna As String) As Boolean
 
+        For Each row As DataRow In tbl.Rows
+            If Not IsDBNull(row(nomeColuna)) AndAlso row(nomeColuna).ToString.Trim() <> "" Then
+                Return True
+            End If
+        Next
+
+        Return False
+
+    End Function
+
+
+    Private Sub SetTituloSeColunaTemValor(tbl As DataTable, nomeColuna As String, nomeParametro As String, titulo As String)
+
+        If ColunaTemValor(tbl, nomeColuna) Then
+            cryResultados.SetParameterValue(nomeParametro, titulo)
+        Else
+            cryResultados.SetParameterValue(nomeParametro, "")
+        End If
+
+    End Sub
+
+    Private Sub AjusteUnidadeMedida()
+        Try
+            Dim strSql As String
+            Dim odbReader As OleDbDataReader
+
+            strSql = "SELECT TipoEnsaio FROM tblAmostra WHERE idAmostra=" & intIdAmostra
+            odbReader = usrConexao.ComandoLeitura(strSql)
+            odbReader.Read()
+
+            If Not IsDBNull(odbReader("TipoEnsaio".ToString)) AndAlso odbReader("TipoEnsaio".ToString) = "DNIT 172 - ME" Then
+                blnMudouUnidadeMPa = False
+                Dim NORMA = odbReader("TipoEnsaio".ToString)
+            Else
+                blnMudouUnidadeMPa = True
+            End If
+
+        Catch ex As Exception
+            MsgBox("AjusteUnidadeMedida" & Chr(13) & ex.Message)
+        End Try
+    End Sub
 
 #End Region
 

@@ -41,6 +41,8 @@ Public Class frmListagem
 
     Private Sub frmListagem_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Try
+            Call VerificarColunasBD()
+
             'Desabilitar os comandos
             Call usrLayout.HabilitarComandos(False)
 
@@ -168,8 +170,8 @@ Public Class frmListagem
                 strNovoEditar = "Editar"
                 IdAmostraEnsaio = dtgGrid.CurrentRow.Cells(0).Value
                 strNomeAmostra = dtgGrid.CurrentRow.Cells(1).Value
-                strCompactacao = dtgGrid.CurrentRow.Cells(4).Value
-                dteData = dtgGrid.CurrentRow.Cells(3).Value
+                'strCompactacao = dtgGrid.CurrentRow.Cells(4).Value
+                dteData = dtgGrid.CurrentRow.Cells(5).Value
 
                 frmCadastrarCP.Show()
                 frmCadastrarCP.Focus()
@@ -263,6 +265,53 @@ Public Class frmListagem
 
     End Sub
 
+    Private Sub VerificarColunasBD()
+        Try
+            If usrConexao.ExisteColuna("DataEnsaio", "tblCPs") = False Then
+                Call usrConexao.AdicionarColuna("DataEnsaio", "tblCPs", "DATETIME")
+            End If
+
+            If usrConexao.ExisteColuna("Cliente", "tblAmostra") = False Then
+                Call usrConexao.AdicionarColuna("Cliente", "tblAmostra", "TEXT(225)")
+            End If
+
+            If usrConexao.ExisteColuna("Obra", "tblAmostra") = False Then
+                Call usrConexao.AdicionarColuna("Obra", "tblAmostra", "TEXT(225)")
+            End If
+
+            If usrConexao.ExisteColuna("LocalAmostra", "tblAmostra") = False Then
+                Call usrConexao.AdicionarColuna("LocalAmostra", "tblAmostra", "TEXT(225)")
+            End If
+
+            If usrConexao.ExisteColuna("TipoMaterial", "tblAmostra") = False Then
+                Call usrConexao.AdicionarColuna("TipoMaterial", "tblAmostra", "TEXT(225)")
+            End If
+
+            If usrConexao.ExisteColuna("Numero", "tblAmostra") = True Then
+                Call usrConexao.AlterarNomeColuna("tblAmostra", "Operador", "Numero")
+            End If
+
+            If usrConexao.ExisteColuna("TituloCampoExtra", "tblAmostra") = False Then
+                Call usrConexao.AdicionarColuna("TituloCampoExtra", "tblAmostra", "TEXT(225)")
+            End If
+
+            If usrConexao.ExisteColuna("ValorCampoExtra", "tblAmostra") = False Then
+                Call usrConexao.AdicionarColuna("ValorCampoExtra", "tblAmostra", "TEXT(225)")
+            End If
+
+            If usrConexao.ExisteColuna("Programa", "tblAmostra") = True Then
+                Call usrConexao.AlterarNomeColuna("tblAmostra", "TituloCampoExtra2", "Programa")
+            End If
+
+            If usrConexao.ExisteColuna("ValorCampoExtra2", "tblAmostra") = False Then
+                Call usrConexao.AdicionarColuna("ValorCampoExtra2", "tblAmostra", "TEXT(225)")
+            End If
+
+        Catch ex As Exception
+            MsgBox("VerificarColunasBD" & Chr(13) & ex.Message)
+        End Try
+    End Sub
+
 #Region "AÇÕES DO FILTRO"
 
     Private Sub tsbClean_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbClean.Click
@@ -307,7 +356,7 @@ Public Class frmListagem
         Dim strCampo As String = ""
         Dim strSql As String
         Dim strTextoProcurado As String = ""
-        Dim strCampos As String = "IdAmostra, Nome, Responsavel, Compactacao, Data, QteCPs"
+        Dim strCampos As String = "IdAmostra, Nome, Operador, Obra, Data, QteCPs"
         Dim strOrdenar As String = "Data DESC"
 
         Try
@@ -317,9 +366,9 @@ Public Class frmListagem
                 strCampo = "Nome"
                 strTextoProcurado = "'%" & tsbFind.Text & "%'"
 
-            ElseIf tsbFindResponsavel.Checked Then
+            ElseIf tsbFindOperador.Checked Then
 
-                strCampo = "Responsavel"
+                strCampo = "Operador"
                 strTextoProcurado = "'%" & tsbFind.Text & "%'"
 
             ElseIf tsbFindQteCP.Checked Then
@@ -332,18 +381,24 @@ Public Class frmListagem
                 strCampo = "Data"
                 strTextoProcurado = "FORMAT('" & tsbFind.Text & "', 'dd/mm/yyyy') OR Data LIKE '%" & tsbFind.Text & "%'"
 
-            ElseIf tsbFindCompactacao.Checked Then
+            ElseIf tsbFindObra.Checked Then
 
-                strCampo = "Compactacao"
+                strCampo = "Obra"
+                strTextoProcurado = "'%" & tsbFind.Text & "%'"
+
+            ElseIf tsbFindCliente.Checked Then
+
+                strCampo = "Cliente"
                 strTextoProcurado = "'%" & tsbFind.Text & "%'"
 
             End If
 
             If tsbFindTodos.Checked Then
 
-                strSql = "SELECT " & strCampos & " FROM [tblAmostra] WHERE Nome LIKE '%" & _
-                _tsbFind.Text & "%' OR Responsavel LIKE '%" & tsbFind.Text & "%' OR Compactacao LIKE '%" & _
-                _tsbFind.Text & "%' OR Data LIKE '%" & tsbFind.Text & "%' OR Data LIKE FORMAT('" & _
+                strSql = "SELECT " & strCampos & " FROM [tblAmostra] WHERE Nome LIKE '%" &
+                _tsbFind.Text & "%' OR Operador LIKE '%" & tsbFind.Text & "%' OR Obra LIKE '%" &
+                 _tsbFind.Text & "%' OR Cliente LIKE '" &
+                _tsbFind.Text & "%' OR Data LIKE '%" & tsbFind.Text & "%' OR Data LIKE FORMAT('" &
                 _tsbFind.Text & "', 'dd/mm/yyyy') OR QteCPs LIKE '%" & tsbFind.Text & "%' ORDER BY " & strOrdenar
 
             Else
@@ -416,20 +471,20 @@ Public Class frmListagem
         End Try
     End Sub
 
-    Private Sub tsbFindResponsavel_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles tsbFindResponsavel.Click
+    Private Sub tsbFindOperador_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles tsbFindOperador.Click
         Try
             'Identificador da coluna
             'intTipo = 2
-            If tsbFindResponsavel.CheckState Then
-                tsbFindResponsavel.Checked = False
+            If tsbFindOperador.CheckState Then
+                tsbFindOperador.Checked = False
             Else
                 Call DesabilitarChecked()
-                tsbFindResponsavel.Checked = True
+                tsbFindOperador.Checked = True
             End If
 
         Catch ex As Exception
             'Mensagem de erro
-            MsgBox("tsbFindResponsavel_Click" & Chr(13) & ex.Message)
+            MsgBox("tsbFindOperador_Click" & Chr(13) & ex.Message)
 
         End Try
     End Sub
@@ -452,20 +507,20 @@ Public Class frmListagem
         End Try
     End Sub
 
-    Private Sub tsbFindCompactacao_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles tsbFindCompactacao.Click
+    Private Sub tsbFindObra_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles tsbFindObra.Click
         Try
             'Identificador da coluna
             'intTipo = 1
-            If tsbFindCompactacao.CheckState Then
-                tsbFindCompactacao.Checked = False
+            If tsbFindObra.CheckState Then
+                tsbFindObra.Checked = False
             Else
                 Call DesabilitarChecked()
-                tsbFindCompactacao.Checked = True
+                tsbFindObra.Checked = True
             End If
 
         Catch ex As Exception
             'Mensagem de erro
-            MsgBox("tsbFindCompactacao_Click" & Chr(13) & ex.Message)
+            MsgBox("tsbFindObra_Click" & Chr(13) & ex.Message)
 
         End Try
     End Sub
@@ -476,10 +531,10 @@ Public Class frmListagem
 
             tsbFindTodos.Checked = False
             tsbFindNome.Checked = False
-            tsbFindResponsavel.Checked = False
+            tsbFindOperador.Checked = False
             tsbFindQteCP.Checked = False
             tsbFindData.Checked = False
-            tsbFindCompactacao.Checked = False
+            tsbFindObra.Checked = False
 
         Catch ex As Exception
             'Mensagem de erro

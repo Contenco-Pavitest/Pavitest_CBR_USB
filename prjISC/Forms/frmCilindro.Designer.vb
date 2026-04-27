@@ -22,44 +22,45 @@ Partial Class frmCilindro
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCilindro))
         Me.bdnNavegator = New System.Windows.Forms.BindingNavigator(Me.components)
-        Me.tsbCountCilindro = New System.Windows.Forms.ToolStripLabel
-        Me.tsbMoverFirstCilindro = New System.Windows.Forms.ToolStripButton
-        Me.tsbMoverPreviousCilindro = New System.Windows.Forms.ToolStripButton
-        Me.tsbSeparator1 = New System.Windows.Forms.ToolStripSeparator
-        Me.tsbPositionCilindro = New System.Windows.Forms.ToolStripTextBox
-        Me.tsbSeparator2 = New System.Windows.Forms.ToolStripSeparator
-        Me.tsbMoverNextCilindro = New System.Windows.Forms.ToolStripButton
-        Me.tsbMoverLastCilindro = New System.Windows.Forms.ToolStripButton
-        Me.tsbSeparator3 = New System.Windows.Forms.ToolStripSeparator
-        Me.tsbAddCilindro = New System.Windows.Forms.ToolStripButton
-        Me.tsbEditCilindro = New System.Windows.Forms.ToolStripButton
-        Me.tsbDelete = New System.Windows.Forms.ToolStripButton
-        Me.tsbSaveCilindro = New System.Windows.Forms.ToolStripButton
-        Me.tsbCancelCilindro = New System.Windows.Forms.ToolStripButton
-        Me.pnlPanel = New System.Windows.Forms.Panel
-        Me.btnOk = New System.Windows.Forms.Button
-        Me.grpCilindro = New System.Windows.Forms.GroupBox
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.txtNome = New System.Windows.Forms.TextBox
-        Me.lblLabel16 = New System.Windows.Forms.Label
-        Me.lblLabel9 = New System.Windows.Forms.Label
-        Me.lblLabel8 = New System.Windows.Forms.Label
-        Me.lblLabel10 = New System.Windows.Forms.Label
-        Me.lblLabel15 = New System.Windows.Forms.Label
-        Me.txtPeso = New System.Windows.Forms.TextBox
-        Me.txtVolume = New System.Windows.Forms.TextBox
-        Me.txtAltura = New System.Windows.Forms.TextBox
-        Me.txtIdCilindro = New System.Windows.Forms.TextBox
         Me.bdnSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.tsbCountCilindro = New System.Windows.Forms.ToolStripLabel()
+        Me.tsbMoverFirstCilindro = New System.Windows.Forms.ToolStripButton()
+        Me.tsbMoverPreviousCilindro = New System.Windows.Forms.ToolStripButton()
+        Me.tsbSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbPositionCilindro = New System.Windows.Forms.ToolStripTextBox()
+        Me.tsbSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbMoverNextCilindro = New System.Windows.Forms.ToolStripButton()
+        Me.tsbMoverLastCilindro = New System.Windows.Forms.ToolStripButton()
+        Me.tsbSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.tsbAddCilindro = New System.Windows.Forms.ToolStripButton()
+        Me.tsbEditCilindro = New System.Windows.Forms.ToolStripButton()
+        Me.tsbDelete = New System.Windows.Forms.ToolStripButton()
+        Me.tsbSaveCilindro = New System.Windows.Forms.ToolStripButton()
+        Me.tsbCancelCilindro = New System.Windows.Forms.ToolStripButton()
+        Me.pnlPanel = New System.Windows.Forms.Panel()
+        Me.btnOk = New System.Windows.Forms.Button()
+        Me.grpCilindro = New System.Windows.Forms.GroupBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtNome = New System.Windows.Forms.TextBox()
+        Me.lblLabel16 = New System.Windows.Forms.Label()
+        Me.lblLabel9 = New System.Windows.Forms.Label()
+        Me.lblLabel8 = New System.Windows.Forms.Label()
+        Me.lblLabel10 = New System.Windows.Forms.Label()
+        Me.lblLabel15 = New System.Windows.Forms.Label()
+        Me.txtPeso = New System.Windows.Forms.TextBox()
+        Me.txtVolume = New System.Windows.Forms.TextBox()
+        Me.txtAltura = New System.Windows.Forms.TextBox()
+        Me.txtIdCilindro = New System.Windows.Forms.TextBox()
+        Me.btnTransferir = New System.Windows.Forms.Button()
         CType(Me.bdnNavegator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.bdnNavegator.SuspendLayout()
+        CType(Me.bdnSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlPanel.SuspendLayout()
         Me.grpCilindro.SuspendLayout()
-        CType(Me.bdnSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'bdnNavegator
@@ -69,7 +70,6 @@ Partial Class frmCilindro
         Me.bdnNavegator.BackColor = System.Drawing.Color.Transparent
         Me.bdnNavegator.BindingSource = Me.bdnSource
         Me.bdnNavegator.CountItem = Me.tsbCountCilindro
-        Me.bdnNavegator.CountItemFormat = "de {0}"
         Me.bdnNavegator.DeleteItem = Nothing
         Me.bdnNavegator.Dock = System.Windows.Forms.DockStyle.None
         Me.bdnNavegator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbMoverFirstCilindro, Me.tsbMoverPreviousCilindro, Me.tsbSeparator1, Me.tsbPositionCilindro, Me.tsbCountCilindro, Me.tsbSeparator2, Me.tsbMoverNextCilindro, Me.tsbMoverLastCilindro, Me.tsbSeparator3, Me.tsbAddCilindro, Me.tsbEditCilindro, Me.tsbDelete, Me.tsbSaveCilindro, Me.tsbCancelCilindro})
@@ -87,7 +87,7 @@ Partial Class frmCilindro
         'tsbCountCilindro
         '
         Me.tsbCountCilindro.Name = "tsbCountCilindro"
-        Me.tsbCountCilindro.Size = New System.Drawing.Size(37, 22)
+        Me.tsbCountCilindro.Size = New System.Drawing.Size(37, 24)
         Me.tsbCountCilindro.Text = "de {0}"
         Me.tsbCountCilindro.ToolTipText = "Total number of items"
         '
@@ -106,18 +106,19 @@ Partial Class frmCilindro
         Me.tsbMoverPreviousCilindro.Image = CType(resources.GetObject("tsbMoverPreviousCilindro.Image"), System.Drawing.Image)
         Me.tsbMoverPreviousCilindro.Name = "tsbMoverPreviousCilindro"
         Me.tsbMoverPreviousCilindro.RightToLeftAutoMirrorImage = True
-        Me.tsbMoverPreviousCilindro.Size = New System.Drawing.Size(23, 22)
+        Me.tsbMoverPreviousCilindro.Size = New System.Drawing.Size(23, 24)
         Me.tsbMoverPreviousCilindro.Text = "Move previous"
         '
         'tsbSeparator1
         '
         Me.tsbSeparator1.Name = "tsbSeparator1"
-        Me.tsbSeparator1.Size = New System.Drawing.Size(6, 25)
+        Me.tsbSeparator1.Size = New System.Drawing.Size(6, 27)
         '
         'tsbPositionCilindro
         '
         Me.tsbPositionCilindro.AccessibleName = "Position"
         Me.tsbPositionCilindro.AutoSize = False
+        Me.tsbPositionCilindro.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.tsbPositionCilindro.Name = "tsbPositionCilindro"
         Me.tsbPositionCilindro.Size = New System.Drawing.Size(50, 21)
         Me.tsbPositionCilindro.Text = "0"
@@ -126,7 +127,7 @@ Partial Class frmCilindro
         'tsbSeparator2
         '
         Me.tsbSeparator2.Name = "tsbSeparator2"
-        Me.tsbSeparator2.Size = New System.Drawing.Size(6, 25)
+        Me.tsbSeparator2.Size = New System.Drawing.Size(6, 27)
         '
         'tsbMoverNextCilindro
         '
@@ -134,7 +135,7 @@ Partial Class frmCilindro
         Me.tsbMoverNextCilindro.Image = CType(resources.GetObject("tsbMoverNextCilindro.Image"), System.Drawing.Image)
         Me.tsbMoverNextCilindro.Name = "tsbMoverNextCilindro"
         Me.tsbMoverNextCilindro.RightToLeftAutoMirrorImage = True
-        Me.tsbMoverNextCilindro.Size = New System.Drawing.Size(23, 22)
+        Me.tsbMoverNextCilindro.Size = New System.Drawing.Size(23, 24)
         Me.tsbMoverNextCilindro.Text = "Move next"
         '
         'tsbMoverLastCilindro
@@ -143,13 +144,13 @@ Partial Class frmCilindro
         Me.tsbMoverLastCilindro.Image = CType(resources.GetObject("tsbMoverLastCilindro.Image"), System.Drawing.Image)
         Me.tsbMoverLastCilindro.Name = "tsbMoverLastCilindro"
         Me.tsbMoverLastCilindro.RightToLeftAutoMirrorImage = True
-        Me.tsbMoverLastCilindro.Size = New System.Drawing.Size(23, 22)
+        Me.tsbMoverLastCilindro.Size = New System.Drawing.Size(23, 24)
         Me.tsbMoverLastCilindro.Text = "Move last"
         '
         'tsbSeparator3
         '
         Me.tsbSeparator3.Name = "tsbSeparator3"
-        Me.tsbSeparator3.Size = New System.Drawing.Size(6, 25)
+        Me.tsbSeparator3.Size = New System.Drawing.Size(6, 27)
         '
         'tsbAddCilindro
         '
@@ -157,7 +158,7 @@ Partial Class frmCilindro
         Me.tsbAddCilindro.Image = CType(resources.GetObject("tsbAddCilindro.Image"), System.Drawing.Image)
         Me.tsbAddCilindro.Name = "tsbAddCilindro"
         Me.tsbAddCilindro.RightToLeftAutoMirrorImage = True
-        Me.tsbAddCilindro.Size = New System.Drawing.Size(23, 22)
+        Me.tsbAddCilindro.Size = New System.Drawing.Size(23, 24)
         Me.tsbAddCilindro.Text = "Adicionar"
         '
         'tsbEditCilindro
@@ -167,7 +168,7 @@ Partial Class frmCilindro
         Me.tsbEditCilindro.ImageTransparentColor = System.Drawing.Color.White
         Me.tsbEditCilindro.Name = "tsbEditCilindro"
         Me.tsbEditCilindro.RightToLeftAutoMirrorImage = True
-        Me.tsbEditCilindro.Size = New System.Drawing.Size(23, 22)
+        Me.tsbEditCilindro.Size = New System.Drawing.Size(23, 24)
         Me.tsbEditCilindro.Text = "Editar"
         '
         'tsbDelete
@@ -176,7 +177,7 @@ Partial Class frmCilindro
         Me.tsbDelete.Image = CType(resources.GetObject("tsbDelete.Image"), System.Drawing.Image)
         Me.tsbDelete.Name = "tsbDelete"
         Me.tsbDelete.RightToLeftAutoMirrorImage = True
-        Me.tsbDelete.Size = New System.Drawing.Size(23, 22)
+        Me.tsbDelete.Size = New System.Drawing.Size(23, 24)
         Me.tsbDelete.Text = "Apagar"
         '
         'tsbSaveCilindro
@@ -185,7 +186,7 @@ Partial Class frmCilindro
         Me.tsbSaveCilindro.Image = CType(resources.GetObject("tsbSaveCilindro.Image"), System.Drawing.Image)
         Me.tsbSaveCilindro.Name = "tsbSaveCilindro"
         Me.tsbSaveCilindro.RightToLeftAutoMirrorImage = True
-        Me.tsbSaveCilindro.Size = New System.Drawing.Size(23, 22)
+        Me.tsbSaveCilindro.Size = New System.Drawing.Size(23, 24)
         Me.tsbSaveCilindro.Text = "Salvar"
         '
         'tsbCancelCilindro
@@ -195,13 +196,13 @@ Partial Class frmCilindro
         Me.tsbCancelCilindro.ImageTransparentColor = System.Drawing.Color.White
         Me.tsbCancelCilindro.Name = "tsbCancelCilindro"
         Me.tsbCancelCilindro.RightToLeftAutoMirrorImage = True
-        Me.tsbCancelCilindro.Size = New System.Drawing.Size(23, 22)
+        Me.tsbCancelCilindro.Size = New System.Drawing.Size(23, 24)
         Me.tsbCancelCilindro.Text = "Cancelar"
         '
         'pnlPanel
         '
         Me.pnlPanel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pnlPanel.BackColor = System.Drawing.Color.Gainsboro
         Me.pnlPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pnlPanel.Controls.Add(Me.bdnNavegator)
@@ -409,12 +410,28 @@ Partial Class frmCilindro
         Me.txtIdCilindro.Tag = "1"
         Me.txtIdCilindro.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'btnTransferir
+        '
+        Me.btnTransferir.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnTransferir.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnTransferir.Image = CType(resources.GetObject("btnTransferir.Image"), System.Drawing.Image)
+        Me.btnTransferir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnTransferir.Location = New System.Drawing.Point(10, 231)
+        Me.btnTransferir.Name = "btnTransferir"
+        Me.btnTransferir.Padding = New System.Windows.Forms.Padding(6, 0, 2, 0)
+        Me.btnTransferir.Size = New System.Drawing.Size(91, 26)
+        Me.btnTransferir.TabIndex = 188
+        Me.btnTransferir.Text = "Transferir"
+        Me.btnTransferir.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnTransferir.UseVisualStyleBackColor = True
+        '
         'frmCilindro
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.ClientSize = New System.Drawing.Size(325, 262)
+        Me.Controls.Add(Me.btnTransferir)
         Me.Controls.Add(Me.pnlPanel)
         Me.Controls.Add(Me.grpCilindro)
         Me.Controls.Add(Me.btnOk)
@@ -428,10 +445,10 @@ Partial Class frmCilindro
         CType(Me.bdnNavegator, System.ComponentModel.ISupportInitialize).EndInit()
         Me.bdnNavegator.ResumeLayout(False)
         Me.bdnNavegator.PerformLayout()
+        CType(Me.bdnSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlPanel.ResumeLayout(False)
         Me.grpCilindro.ResumeLayout(False)
         Me.grpCilindro.PerformLayout()
-        CType(Me.bdnSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -466,4 +483,5 @@ Partial Class frmCilindro
     Public WithEvents lblLabel15 As System.Windows.Forms.Label
     Public WithEvents txtIdCilindro As System.Windows.Forms.TextBox
     Friend WithEvents tsbDelete As System.Windows.Forms.ToolStripButton
+    Friend WithEvents btnTransferir As Button
 End Class

@@ -30,9 +30,9 @@ Public Class frmResultados
     Dim listaCargaN As List(Of Double) = New List(Of Double)
     Dim listaCargakN As List(Of Double) = New List(Of Double)
     Public listaDeformacaoEspecifica As New List(Of Double)
-    Dim dblListaUmidade As New List(Of Double)
-    Dim dblListaMassaSeca As New List(Of Double)
-    Dim dblListaExpansao As New List(Of Double)
+    Dim listaUmidade As New List(Of Double)
+    Dim listaMassaSeca As New List(Of Double)
+    Dim listaExpansao As New List(Of Double)
     Dim dblLiistaISC As New List(Of Double)
     Dim dblListaCarga As New List(Of Double)
     Dim dblListaPenetracao As New List(Of Double)
@@ -191,9 +191,9 @@ Public Class frmResultados
                     Do While Not i > intListCPsMarcados.Count - 1
                         If odbReader("IdCP".ToString) = intListCPsMarcados(i) Then
 
-                            If Not IsDBNull(odbReader("Umidade".ToString)) Then dblListaUmidade.Add(odbReader("Umidade".ToString))
-                            If Not IsDBNull(odbReader("MassaSeca".ToString)) Then dblListaMassaSeca.Add(odbReader("MassaSeca".ToString))
-                            If Not IsDBNull(odbReader("Expansao".ToString)) Then dblListaExpansao.Add(odbReader("Expansao".ToString))
+                            If Not IsDBNull(odbReader("Umidade".ToString)) Then listaUmidade.Add(odbReader("Umidade".ToString))
+                            If Not IsDBNull(odbReader("MassaSeca".ToString)) Then listaMassaSeca.Add(odbReader("MassaSeca".ToString))
+                            If Not IsDBNull(odbReader("Expansao".ToString)) Then listaExpansao.Add(odbReader("Expansao".ToString))
                             If Not IsDBNull(odbReader("ISC1".ToString)) And Not IsDBNull(odbReader("ISC2".ToString)) Then
                                 'Gráfico 03 - ISC x Umidade
                                 If odbReader("ISC1".ToString) > odbReader("ISC2".ToString) Then
@@ -222,29 +222,17 @@ Public Class frmResultados
 
             Select Case intEscolhaGrafico
                 Case 1
-                    If dblListaMassaSeca.Count > 0 Then
-                        'Gráfico 01 - Massa Seca x Umidade
-                        Call MontarGrafico(dblListaMassaSeca)
-                    End If
-
+                    'Gráfico 01 - Massa Seca x Umidade
+                    Call MontarGrafico(listaMassaSeca)
                 Case 2
-                    If dblListaExpansao.Count > 0 Then
-                        'Gráfico 02 - Expansão x Umidade
-                        Call MontarGrafico(dblListaExpansao)
-                    End If
-
+                    'Gráfico 02 - Expansão x Umidade
+                    Call MontarGrafico(listaExpansao)
                 Case 3
-
-                    If dblLiistaISC.Count > 0 Then
-                        Call MontarGrafico(dblLiistaISC)
-                    End If
-
+                    'Gráfico 03 - ISC x Umidade
+                    Call MontarGrafico(dblLiistaISC)
+                Case 4
+                    Call MontarGraficoMultiplasLinhas()
             End Select
-
-            If intEscolhaGrafico = 4 Then
-                Call MontarGraficoMultiplasLinhas()
-                Exit Sub
-            End If
 
         Catch ex As Exception
             MsgBox("PlotarGraficos()" & Chr(13) & ex.Message)
@@ -312,11 +300,11 @@ Public Class frmResultados
         Try
             'dblMinhaLista.Add(dblValorY)
             graficoPavitest.dblMatrixEixoY1.Add(dblMinhaLista)
-            graficoPavitest.dblVetorValorX = (dblListaUmidade)
+            graficoPavitest.dblVetorValorX = (listaUmidade)
 
             'Ajustes no eixo (x)
 
-            For Each item In dblListaUmidade
+            For Each item In listaUmidade
                 If (item - 2) < graficoPavitest.dblMenorValorX Or graficoPavitest.dblMenorValorX = 0 Then
                     graficoPavitest.dblMenorValorX = item - 2
                 End If
@@ -406,9 +394,9 @@ Public Class frmResultados
         'obs: Usar método list.Clear() limpa também as listas que já receberam anteriormente valores proveninetes dessa lista de origem
 
         'Zera as listas 
-        dblListaUmidade = New List(Of Double)
-        dblListaMassaSeca = New List(Of Double)
-        dblListaExpansao = New List(Of Double)
+        listaUmidade = New List(Of Double)
+        listaMassaSeca = New List(Of Double)
+        listaExpansao = New List(Of Double)
         dblLiistaISC = New List(Of Double)
         dblListaCarga = New List(Of Double)
         dblListaPenetracao = New List(Of Double)
@@ -534,11 +522,11 @@ Public Class frmResultados
         Try
             Select Case intNovo
                 Case 0
-                    listaAtual = dblListaExpansao
+                    listaAtual = listaExpansao
                 Case 1
-                    listaAtual = dblListaMassaSeca
+                    listaAtual = listaMassaSeca
                 Case 2
-                    listaAtual = dblListaUmidade
+                    listaAtual = listaUmidade
                 Case 3
                     listaAtual = dblLiistaISC
                 Case 4
@@ -694,10 +682,10 @@ Public Class frmResultados
         End If
     End Sub
     Private Sub LimparValores()
-        dblListaUmidade.Clear()
-        dblListaMassaSeca.Clear()
+        listaUmidade.Clear()
+        listaMassaSeca.Clear()
         dblLiistaISC.Clear()
-        dblListaExpansao.Clear()
+        listaExpansao.Clear()
     End Sub
 
 
@@ -1406,28 +1394,23 @@ Public Class frmResultados
         graficoPavitest.chartWidth = 680
         graficoPavitest.chartHeight = 360
 
+        blnPrintarGrafico = True
+
         intOrdemPrints = 0
         'selecionar grafico 1 (titulo, eixoX,eixoY)
         Call mnuGraficoMassaxUmidade_Click(Nothing, Nothing)
+
         intOrdemPrints = 1
-        blnPrintarGrafico = True
-        graficoPavitest.AtualizarGraficoMultiplasListas()
         'selecionar grafico 2 (titulo, eixoX,eixoY)
         Call mnuGraficoExpansaoxUmidade_Click(Nothing, Nothing)
+
         intOrdemPrints = 2
-        blnPrintarGrafico = True
-        graficoPavitest.AtualizarGraficoMultiplasListas()
         'selecionar grafico 3 (titulo, eixoX,eixoY)
         Call IscXUmidadeToolStripMenuItem_Click(Nothing, Nothing)
+
         intOrdemPrints = 3
-        blnPrintarGrafico = True
-        graficoPavitest.AtualizarGraficoMultiplasListas()
         'selecionar grafico 4 (titulo, eixoX,eixoY)
         Call MultiplasLinhasToolStripMenuItem_Click(Nothing, Nothing)
-        'intOrdemPrints = 4
-        'blnPrintarGrafico = True
-        'graficoPavitest.AtualizarGraficoMultiplasListas()
-
 
     End Sub
 

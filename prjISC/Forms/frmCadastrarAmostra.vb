@@ -47,9 +47,9 @@ Public Class frmCadastrarAmostra
 
             If blnNovaAmostra = False Then
                 Call VerificaCPEnsaiado()
-                If blnHaCPsEnsaiados = True Then
-                    btnEditar.Enabled = False
-                End If
+                'If blnHaCPsEnsaiados = True Then
+                '    btnEditar.Enabled = False
+                'End If
                 blnSalvar = True
                 Call AtualizarDados()
                 Call HabilitarComandos(True, True, False)
@@ -68,9 +68,9 @@ Public Class frmCadastrarAmostra
                 mskData.Text = CStr(DateTime.Now.ToShortDateString)
             End If
 
-            If blnHaCPsEnsaiados = True Then
-                btnEditar.Enabled = False
-            End If
+            'If blnHaCPsEnsaiados = True Then
+            '    btnEditar.Enabled = False
+            'End If
 
         Catch ex As Exception
             'Mensagem de erro
@@ -152,10 +152,20 @@ Public Class frmCadastrarAmostra
             If blnNovaAmostra Then strComando = cmd_INSERT Else strComando = cmd_UPDATE
 
             If txtNome.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "Nome", txtNome.Text)
+            If txtCliente.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "Cliente", txtCliente.Text)
+            If txtObra.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "Obra", txtObra.Text)
+            If txtLocal.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "LocalAmostra", txtLocal.Text)
+            If txtTipoMaterial.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "TipoMaterial", txtTipoMaterial.Text)
+            If txtOperador.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "Operador", txtOperador.Text)
             If txtResponsavel.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "Responsavel", txtResponsavel.Text)
+
+            If txtTituloExtra1.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "TituloCampoExtra", txtTituloExtra1.Text)
+            If txtValorExtra1.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "ValorCampoExtra", txtValorExtra1.Text)
+
+            If txtTituloExtra2.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "TituloCampoExtra2", txtTituloExtra2.Text)
+            If txtValorExtra2.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "ValorCampoExtra2", txtValorExtra2.Text)
+
             If mskData.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "Data", mskData.Text)
-            If txtPrograma.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "Programa", txtPrograma.Text)
-            If txtNumero.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "Numero", txtNumero.Text)
             If cmbCompactacao.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "Compactacao", cmbCompactacao.Text)
             If txtTipoEnsaio.Text <> "" Then Call usrConexao.ConstruirSQL(strComando, "TipoEnsaio", txtTipoEnsaio.Text)
 
@@ -265,10 +275,17 @@ Public Class frmCadastrarAmostra
             'Atribuir os valores 
             If Not IsDBNull(odbReader("IdAmostra".ToString)) Then txtIdAmostra.Text = odbReader("IdAmostra".ToString)
             If Not IsDBNull(odbReader("Nome".ToString)) Then txtNome.Text = odbReader("Nome".ToString)
+            If Not IsDBNull(odbReader("Cliente".ToString)) Then txtCliente.Text = odbReader("Cliente".ToString)
+            If Not IsDBNull(odbReader("Obra".ToString)) Then txtObra.Text = odbReader("Obra".ToString)
+            If Not IsDBNull(odbReader("LocalAmostra".ToString)) Then txtLocal.Text = odbReader("LocalAmostra".ToString)
+            If Not IsDBNull(odbReader("TipoMaterial".ToString)) Then txtTipoMaterial.Text = odbReader("TipoMaterial".ToString)
+            If Not IsDBNull(odbReader("Operador".ToString)) Then txtOperador.Text = odbReader("Operador".ToString)
             If Not IsDBNull(odbReader("Responsavel".ToString)) Then txtResponsavel.Text = odbReader("Responsavel".ToString)
+            If Not IsDBNull(odbReader("TituloCampoExtra".ToString)) Then txtTituloExtra1.Text = odbReader("TituloCampoExtra".ToString)
+            If Not IsDBNull(odbReader("ValorCampoExtra".ToString)) Then txtValorExtra1.Text = odbReader("ValorCampoExtra".ToString)
+            If Not IsDBNull(odbReader("TituloCampoExtra2".ToString)) Then txtTituloExtra2.Text = odbReader("TituloCampoExtra2".ToString)
+            If Not IsDBNull(odbReader("ValorCampoExtra2".ToString)) Then txtValorExtra2.Text = odbReader("ValorCampoExtra2".ToString)
             mskData.Text = odbReader("Data".ToString)
-            If Not IsDBNull(odbReader("Numero".ToString)) Then txtNumero.Text = odbReader("Numero".ToString)
-            If Not IsDBNull(odbReader("Programa".ToString)) Then txtPrograma.Text = odbReader("Programa".ToString)
             If Not IsDBNull(odbReader("Compactacao".ToString)) Then cmbCompactacao.Text = odbReader("Compactacao".ToString)
             If Not IsDBNull(odbReader("TipoEnsaio".ToString)) Then txtTipoEnsaio.Text = odbReader("TipoEnsaio".ToString)
 
@@ -344,8 +361,15 @@ Public Class frmCadastrarAmostra
             txtResponsavel.Enabled = blnComando
             mskData.Enabled = blnComando
             cmbCompactacao.Enabled = blnComando
-            txtPrograma.Enabled = blnComando
-            txtNumero.Enabled = blnComando
+            txtCliente.Enabled = blnComando
+            txtObra.Enabled = blnComando
+            txtLocal.Enabled = blnComando
+            txtTipoMaterial.Enabled = blnComando
+            txtOperador.Enabled = blnComando
+            txtTituloExtra1.Enabled = blnComando
+            txtValorExtra1.Enabled = blnComando
+            txtTituloExtra2.Enabled = blnComando
+            txtValorExtra2.Enabled = blnComando
             RadioButtonAbnt.Enabled = blnComando
             RadioButtonDnit.Enabled = blnComando
         Catch ex As Exception
@@ -372,16 +396,9 @@ Public Class frmCadastrarAmostra
             End If
 
             'Verificar nome do número do programa
-            If txtPrograma.Text = Nothing Then
+            If txtCliente.Text = Nothing Then
                 MsgBox("O preenchimento do NÚMERO DO PROGRAMA da amostra é obrigatório!", vbExclamation, "NÚMERO DO PROGRAMA da amostra vazio")
-                txtPrograma.Focus()
-                Exit Function
-            End If
-
-            'Verificar nome do núemro da amostra
-            If txtNumero.Text = Nothing Then
-                MsgBox("O preenchimento do NÚMERO DA AMOSTRA é obrigatório!", vbExclamation, "NÚMERO DA AMOSTRA vazio")
-                txtNumero.Focus()
+                txtCliente.Focus()
                 Exit Function
             End If
 
@@ -415,7 +432,7 @@ Public Class frmCadastrarAmostra
 
 #Region "Verificar valores numéricos e selecionar foco"
 
-    Private Sub txtNome_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtNome.TextChanged
+    Private Sub txtNome_TextChanged_1(sender As Object, e As EventArgs) Handles txtNome.TextChanged
         'Habilita botão salvar
 
         Try
@@ -427,10 +444,9 @@ Public Class frmCadastrarAmostra
             MsgBox("txtNome_TextChanged" & Chr(13) & ex.Message)
 
         End Try
-
     End Sub
 
-    Private Sub cmbCompactacao_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmbCompactacao.Click
+    Private Sub txtCliente_TextChanged(sender As Object, e As EventArgs) Handles txtCliente.TextChanged
         'Habilita botão salvar
 
         Try
@@ -439,12 +455,12 @@ Public Class frmCadastrarAmostra
 
         Catch ex As Exception
             'Mensagem de erro
-            MsgBox("cmbCompactacao_Click" & Chr(13) & ex.Message)
+            MsgBox("txtNome_TextChanged" & Chr(13) & ex.Message)
 
         End Try
     End Sub
 
-    Private Sub txtResponsavel_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub txtObra_TextChanged(sender As Object, e As EventArgs) Handles txtObra.TextChanged
         'Habilita botão salvar
 
         Try
@@ -453,13 +469,12 @@ Public Class frmCadastrarAmostra
 
         Catch ex As Exception
             'Mensagem de erro
-            MsgBox("txtResponsavel_TextChanged" & Chr(13) & ex.Message)
+            MsgBox("txtNome_TextChanged" & Chr(13) & ex.Message)
 
         End Try
-
     End Sub
 
-    Private Sub txtNumero_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtNumero.TextChanged
+    Private Sub txtLocal_TextChanged(sender As Object, e As EventArgs) Handles txtLocal.TextChanged
         'Habilita botão salvar
 
         Try
@@ -468,12 +483,12 @@ Public Class frmCadastrarAmostra
 
         Catch ex As Exception
             'Mensagem de erro
-            MsgBox("txtNumero_TextChanged" & Chr(13) & ex.Message)
+            MsgBox("txtNome_TextChanged" & Chr(13) & ex.Message)
 
         End Try
     End Sub
 
-    Private Sub txtPrograma_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtPrograma.TextChanged
+    Private Sub mskData_MaskChanged(sender As Object, e As EventArgs) Handles mskData.MaskChanged
         'Habilita botão salvar
 
         Try
@@ -482,16 +497,124 @@ Public Class frmCadastrarAmostra
 
         Catch ex As Exception
             'Mensagem de erro
-            MsgBox("txtPrograma_TextChanged" & Chr(13) & ex.Message)
+            MsgBox("txtNome_TextChanged" & Chr(13) & ex.Message)
 
         End Try
     End Sub
 
-    Private Sub Label6_Click(sender As Object, e As EventArgs) Handles Label6.Click
+    Private Sub txtTipoMaterial_TextChanged(sender As Object, e As EventArgs) Handles txtTipoMaterial.TextChanged
+        'Habilita botão salvar
 
+        Try
+            Call HabilitarComandos(False, False, True)
+            blnSalvar = False
+
+        Catch ex As Exception
+            'Mensagem de erro
+            MsgBox("txtNome_TextChanged" & Chr(13) & ex.Message)
+
+        End Try
     End Sub
 
-    Private Sub RadioButtonAbnt_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonAbnt.CheckedChanged, RadioButtonDnit.CheckedChanged
+    Private Sub cmbCompactacao_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCompactacao.SelectedIndexChanged
+        'Habilita botão salvar
+
+        Try
+            Call HabilitarComandos(False, False, True)
+            blnSalvar = False
+
+        Catch ex As Exception
+            'Mensagem de erro
+            MsgBox("txtNome_TextChanged" & Chr(13) & ex.Message)
+
+        End Try
+    End Sub
+
+    Private Sub txtResponsavel_TextChanged(sender As Object, e As EventArgs) Handles txtResponsavel.TextChanged
+        'Habilita botão salvar
+
+        Try
+            Call HabilitarComandos(False, False, True)
+            blnSalvar = False
+
+        Catch ex As Exception
+            'Mensagem de erro
+            MsgBox("txtNome_TextChanged" & Chr(13) & ex.Message)
+
+        End Try
+    End Sub
+
+    Private Sub txtOperador_TextChanged(sender As Object, e As EventArgs) Handles txtOperador.TextChanged
+        'Habilita botão salvar
+
+        Try
+            Call HabilitarComandos(False, False, True)
+            blnSalvar = False
+
+        Catch ex As Exception
+            'Mensagem de erro
+            MsgBox("txtNome_TextChanged" & Chr(13) & ex.Message)
+
+        End Try
+    End Sub
+
+    Private Sub txtTituloExtra1_TextChanged(sender As Object, e As EventArgs) Handles txtTituloExtra1.TextChanged
+        'Habilita botão salvar
+
+        Try
+            Call HabilitarComandos(False, False, True)
+            blnSalvar = False
+
+        Catch ex As Exception
+            'Mensagem de erro
+            MsgBox("txtNome_TextChanged" & Chr(13) & ex.Message)
+
+        End Try
+    End Sub
+
+    Private Sub txtValorExtra1_TextChanged(sender As Object, e As EventArgs) Handles txtValorExtra1.TextChanged
+        'Habilita botão salvar
+
+        Try
+            Call HabilitarComandos(False, False, True)
+            blnSalvar = False
+
+        Catch ex As Exception
+            'Mensagem de erro
+            MsgBox("txtNome_TextChanged" & Chr(13) & ex.Message)
+
+        End Try
+    End Sub
+
+    Private Sub txtTituloExtra2_TextChanged(sender As Object, e As EventArgs) Handles txtTituloExtra2.TextChanged
+        'Habilita botão salvar
+
+        Try
+            Call HabilitarComandos(False, False, True)
+            blnSalvar = False
+
+        Catch ex As Exception
+            'Mensagem de erro
+            MsgBox("txtNome_TextChanged" & Chr(13) & ex.Message)
+
+        End Try
+    End Sub
+
+    Private Sub txtValorExtra2_TextChanged(sender As Object, e As EventArgs) Handles txtValorExtra2.TextChanged
+        'Habilita botão salvar
+
+        Try
+            Call HabilitarComandos(False, False, True)
+            blnSalvar = False
+
+        Catch ex As Exception
+            'Mensagem de erro
+            MsgBox("txtNome_TextChanged" & Chr(13) & ex.Message)
+
+        End Try
+    End Sub
+
+    Private Sub RadioButtonAbnt_TextChanged(sender As Object, e As EventArgs) Handles RadioButtonAbnt.TextChanged
         If RadioButtonAbnt.Checked Then
             strTipoEnsaio = RadioButtonAbnt.Text
             txtTipoEnsaio.Text = strTipoEnsaio
@@ -500,7 +623,6 @@ Public Class frmCadastrarAmostra
             txtTipoEnsaio.Text = strTipoEnsaio
         End If
     End Sub
-
 
 #End Region
 

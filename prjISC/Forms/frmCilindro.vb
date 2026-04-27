@@ -21,7 +21,7 @@ Public Class frmCilindro
 
         Call HabilitarBotoes(True, False)
 
-        Call HabilitarCampos(True)
+        Call HabilitarCampos(False)
     End Sub
 
 #Region "FUNÇÕES E PROCEDIMENTOS"
@@ -84,10 +84,10 @@ Public Class frmCilindro
     End Sub
 
     Private Sub HabilitarCampos(ByVal blnHabilita As Boolean)
-        txtNome.ReadOnly = blnHabilita
-        txtPeso.ReadOnly = blnHabilita
-        txtAltura.ReadOnly = blnHabilita
-        txtVolume.ReadOnly = blnHabilita
+        txtNome.Enabled = blnHabilita
+        txtPeso.Enabled = blnHabilita
+        txtAltura.Enabled = blnHabilita
+        txtVolume.Enabled = blnHabilita
     End Sub
 
     Private Sub LimparCampos()
@@ -108,7 +108,7 @@ Public Class frmCilindro
 
         Try
 
-            HabilitarCampos(False)
+            HabilitarCampos(True)
             HabilitarBotoes(False, True)
 
             txtNome.Focus()
@@ -129,7 +129,7 @@ Public Class frmCilindro
     Private Sub tsbCancelCilindro_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tsbCancelCilindro.Click
         Try
 
-            HabilitarCampos(True)
+            HabilitarCampos(False)
             HabilitarBotoes(True, False)
 
             txtNome.BackColor = Color.Azure
@@ -148,7 +148,7 @@ Public Class frmCilindro
 
         Try
 
-            HabilitarCampos(False)
+            HabilitarCampos(True)
             HabilitarBotoes(False, True)
             LimparCampos()
 
@@ -247,7 +247,7 @@ Public Class frmCilindro
 
             AtualizarNavegador()
             HabilitarBotoes(True, False)
-            HabilitarCampos(True)
+            HabilitarCampos(False)
 
 
             txtNome.BackColor = Color.Azure
@@ -267,6 +267,10 @@ Public Class frmCilindro
         frmCadastrarCP.CarregarCilindro()
 
         Me.Close()
+    End Sub
+
+    Private Sub btnTransferir_Click(sender As Object, e As EventArgs) Handles btnTransferir.Click
+        frmTransferenciaDados.ShowDialog()
     End Sub
 
 #End Region

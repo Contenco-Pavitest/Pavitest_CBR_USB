@@ -1762,7 +1762,7 @@ Public Class frmRever
         intAlturaInicial = graficoPavitest.chartHeight
 
         graficoPavitest.chartWidth = 680
-        graficoPavitest.chartHeight = 400
+        graficoPavitest.chartHeight = 290
 
         graficoPavitest.AtualizarGraficoMultiplasListas()
 

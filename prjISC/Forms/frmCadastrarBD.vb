@@ -6,6 +6,7 @@ Option Explicit On
 Imports System.Data.OleDb
 Imports System.IO.File
 
+
 Friend Class frmCadastrarBD
 
 #Region "Declaração de variáveis"
@@ -620,14 +621,21 @@ Friend Class frmCadastrarBD
 
             'Criar os campos
             Call usrConexao.ConstruirSQL(cmd_CREATE, "IdAmostra", "COUNTER CONSTRAINT RestrictCamp PRIMARY KEY")
-            Call usrConexao.ConstruirSQL(cmd_CREATE, "Nome", "TEXT(50)")
-            Call usrConexao.ConstruirSQL(cmd_CREATE, "Numero", "TEXT(50)")
-            Call usrConexao.ConstruirSQL(cmd_CREATE, "Programa", "TEXT(50)")
+            Call usrConexao.ConstruirSQL(cmd_CREATE, "Nome", "TEXT(225)")
+            Call usrConexao.ConstruirSQL(cmd_CREATE, "Cliente", "TEXT(225)")
+            Call usrConexao.ConstruirSQL(cmd_CREATE, "Obra", "TEXT(225)")
+            Call usrConexao.ConstruirSQL(cmd_CREATE, "LocalAmostra", "TEXT(225)")
+            Call usrConexao.ConstruirSQL(cmd_CREATE, "TipoMaterial", "TEXT(225)")
             Call usrConexao.ConstruirSQL(cmd_CREATE, "Responsavel", "TEXT(100)")
+            Call usrConexao.ConstruirSQL(cmd_CREATE, "Operador", "TEXT(100)")
             Call usrConexao.ConstruirSQL(cmd_CREATE, "Data", "DATETIME")
             Call usrConexao.ConstruirSQL(cmd_CREATE, "Compactacao", "TEXT(50)")
             Call usrConexao.ConstruirSQL(cmd_CREATE, "QteCPs", "INTEGER")
             Call usrConexao.ConstruirSQL(cmd_CREATE, "TipoEnsaio", "TEXT(100)")
+            Call usrConexao.ConstruirSQL(cmd_CREATE, "TituloCampoExtra", "TEXT(225)")
+            Call usrConexao.ConstruirSQL(cmd_CREATE, "ValorCampoExtra", "TEXT(225)")
+            Call usrConexao.ConstruirSQL(cmd_CREATE, "TituloCampoExtra2", "TEXT(225)")
+            Call usrConexao.ConstruirSQL(cmd_CREATE, "ValorCampoExtra2", "TEXT(225)")
 
             'add coluna "TipoEnsaio"
 
@@ -734,6 +742,7 @@ Friend Class frmCadastrarBD
             Call usrConexao.ConstruirSQL(cmd_CREATE, "ISC2", "DOUBLE")
             Call usrConexao.ConstruirSQL(cmd_CREATE, "Y1", "DOUBLE")
             Call usrConexao.ConstruirSQL(cmd_CREATE, "Y2", "DOUBLE")
+            Call usrConexao.ConstruirSQL(cmd_CREATE, "DataEnsaio", "DATETIME")
             Call usrConexao.ConstruirSQL(cmd_CREATE, "EnsaioRealizado", "BIT")
 
             If strStruture_Campo <> "" Then strStruture_Campo = strStruture_Campo & ")"

@@ -98,7 +98,14 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Interop.ADOX, Version=2.8.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\CBR\3.8B.BK.EF-00.03 (USB)\Finalizado - 14-05-24 p1\prjISC\obj\Debug\Interop.ADOX.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <HintPath>..\..\..\..\Concreto\1.A.J.FG-01.26 - Correção de conflito\prjConcreto\bin\Release\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Graph, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
     <Reference Include="Microsoft.VisualBasic.Compatibility" />
     <Reference Include="netchartdir, Version=7.0.0.0, Culture=neutral, PublicKeyToken=2db5fc05de12e204, processorArchitecture=MSIL">
@@ -298,6 +305,12 @@
     <Compile Include="Forms\frmSenhaAcesso.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmTransferenciaDados.Designer.vb">
+      <DependentUpon>frmTransferenciaDados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmTransferenciaDados.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\mdiPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -435,6 +448,9 @@
     <EmbeddedResource Include="Forms\frmSenhaAcesso.resx">
       <DependentUpon>frmSenhaAcesso.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTransferenciaDados.resx">
+      <DependentUpon>frmTransferenciaDados.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\mdiPrincipal.resx">
       <DependentUpon>mdiPrincipal.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -510,6 +526,15 @@
       <Lcid>0</Lcid>
       <WrapperTool>aximp</WrapperTool>
       <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="DAO">
+      <Guid>{00025E01-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
     <COMReference Include="FLPGRFLib">
       <Guid>{1937DC2F-517A-11D1-9F5D-00C04FC32E79}</Guid>

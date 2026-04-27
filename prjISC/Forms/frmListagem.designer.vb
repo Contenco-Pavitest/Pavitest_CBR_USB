@@ -32,9 +32,10 @@ Partial Class frmListagem
         Me.dtgGrid = New System.Windows.Forms.DataGridView()
         Me.IdAmostra = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Nome = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Responsavel = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Obra = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Operador = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Data = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Compactacao = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.QteCPs = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.bdnSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.btnOk = New System.Windows.Forms.Button()
@@ -62,10 +63,11 @@ Partial Class frmListagem
         Me.tsbFindNome = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsbFindData = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsbFindQteCP = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsbFindResponsavel = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tsbFindCompactacao = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsbFindOperador = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsbFindObra = New System.Windows.Forms.ToolStripMenuItem()
         Me.bdnNavegator = New System.Windows.Forms.BindingNavigator(Me.components)
         Me.tsbClean = New System.Windows.Forms.ToolStripButton()
+        Me.tsbFindCliente = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.dtgGrid, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bdnSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlPanel.SuspendLayout()
@@ -98,7 +100,7 @@ Partial Class frmListagem
         DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.dtgGrid.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
         Me.dtgGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtgGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdAmostra, Me.Nome, Me.Responsavel, Me.Data, Me.Compactacao, Me.QteCPs})
+        Me.dtgGrid.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdAmostra, Me.Nome, Me.Obra, Me.Cliente, Me.Operador, Me.Data, Me.QteCPs})
         Me.dtgGrid.DataSource = Me.bdnSource
         DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
@@ -110,8 +112,7 @@ Partial Class frmListagem
         Me.dtgGrid.DefaultCellStyle = DataGridViewCellStyle8
         Me.dtgGrid.EnableHeadersVisualStyles = False
         Me.dtgGrid.GridColor = System.Drawing.Color.Gainsboro
-        Me.dtgGrid.Location = New System.Drawing.Point(16, 57)
-        Me.dtgGrid.Margin = New System.Windows.Forms.Padding(4)
+        Me.dtgGrid.Location = New System.Drawing.Point(12, 46)
         Me.dtgGrid.Name = "dtgGrid"
         Me.dtgGrid.ReadOnly = True
         Me.dtgGrid.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
@@ -132,7 +133,7 @@ Partial Class frmListagem
         DataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White
         Me.dtgGrid.RowsDefaultCellStyle = DataGridViewCellStyle10
         Me.dtgGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dtgGrid.Size = New System.Drawing.Size(1321, 612)
+        Me.dtgGrid.Size = New System.Drawing.Size(991, 497)
         Me.dtgGrid.TabIndex = 52
         '
         'IdAmostra
@@ -147,38 +148,50 @@ Partial Class frmListagem
         'Nome
         '
         Me.Nome.DataPropertyName = "Nome"
+        Me.Nome.FillWeight = 130.0!
         Me.Nome.HeaderText = "Nome da Amostra"
         Me.Nome.MinimumWidth = 6
         Me.Nome.Name = "Nome"
         Me.Nome.ReadOnly = True
         '
-        'Responsavel
+        'Obra
         '
-        Me.Responsavel.DataPropertyName = "Responsavel"
-        Me.Responsavel.HeaderText = "Responsável"
-        Me.Responsavel.MinimumWidth = 6
-        Me.Responsavel.Name = "Responsavel"
-        Me.Responsavel.ReadOnly = True
+        Me.Obra.DataPropertyName = "Obra"
+        Me.Obra.FillWeight = 130.0!
+        Me.Obra.HeaderText = "Obra"
+        Me.Obra.MinimumWidth = 6
+        Me.Obra.Name = "Obra"
+        Me.Obra.ReadOnly = True
+        '
+        'Cliente
+        '
+        Me.Cliente.DataPropertyName = "Cliente"
+        Me.Cliente.HeaderText = "Cliente"
+        Me.Cliente.Name = "Cliente"
+        Me.Cliente.ReadOnly = True
+        '
+        'Operador
+        '
+        Me.Operador.DataPropertyName = "Operador"
+        Me.Operador.FillWeight = 70.0!
+        Me.Operador.HeaderText = "Operador"
+        Me.Operador.MinimumWidth = 6
+        Me.Operador.Name = "Operador"
+        Me.Operador.ReadOnly = True
         '
         'Data
         '
         Me.Data.DataPropertyName = "Data"
+        Me.Data.FillWeight = 60.0!
         Me.Data.HeaderText = "Data Amostra"
         Me.Data.MinimumWidth = 6
         Me.Data.Name = "Data"
         Me.Data.ReadOnly = True
         '
-        'Compactacao
-        '
-        Me.Compactacao.DataPropertyName = "Compactacao"
-        Me.Compactacao.HeaderText = "Energia de Compactação"
-        Me.Compactacao.MinimumWidth = 6
-        Me.Compactacao.Name = "Compactacao"
-        Me.Compactacao.ReadOnly = True
-        '
         'QteCPs
         '
         Me.QteCPs.DataPropertyName = "QteCPs"
+        Me.QteCPs.FillWeight = 70.0!
         Me.QteCPs.HeaderText = "Quantidade de CPs"
         Me.QteCPs.MinimumWidth = 6
         Me.QteCPs.Name = "QteCPs"
@@ -190,11 +203,10 @@ Partial Class frmListagem
         Me.btnOk.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnOk.Image = CType(resources.GetObject("btnOk.Image"), System.Drawing.Image)
         Me.btnOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnOk.Location = New System.Drawing.Point(1229, 742)
-        Me.btnOk.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnOk.Location = New System.Drawing.Point(922, 603)
         Me.btnOk.Name = "btnOk"
-        Me.btnOk.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
-        Me.btnOk.Size = New System.Drawing.Size(108, 32)
+        Me.btnOk.Padding = New System.Windows.Forms.Padding(4, 0, 0, 0)
+        Me.btnOk.Size = New System.Drawing.Size(81, 26)
         Me.btnOk.TabIndex = 5
         Me.btnOk.Text = "&Ok"
         Me.btnOk.UseVisualStyleBackColor = True
@@ -210,10 +222,9 @@ Partial Class frmListagem
         Me.pnlPanel.Controls.Add(Me.btnRelatorio)
         Me.pnlPanel.Controls.Add(Me.btnEditar)
         Me.pnlPanel.Controls.Add(Me.btnNovo)
-        Me.pnlPanel.Location = New System.Drawing.Point(0, 693)
-        Me.pnlPanel.Margin = New System.Windows.Forms.Padding(4)
+        Me.pnlPanel.Location = New System.Drawing.Point(0, 563)
         Me.pnlPanel.Name = "pnlPanel"
-        Me.pnlPanel.Size = New System.Drawing.Size(1354, 41)
+        Me.pnlPanel.Size = New System.Drawing.Size(1016, 34)
         Me.pnlPanel.TabIndex = 88
         '
         'btnCP
@@ -222,11 +233,10 @@ Partial Class frmListagem
         Me.btnCP.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCP.Image = CType(resources.GetObject("btnCP.Image"), System.Drawing.Image)
         Me.btnCP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnCP.Location = New System.Drawing.Point(1228, 4)
-        Me.btnCP.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnCP.Location = New System.Drawing.Point(921, 3)
         Me.btnCP.Name = "btnCP"
-        Me.btnCP.Padding = New System.Windows.Forms.Padding(8, 0, 16, 0)
-        Me.btnCP.Size = New System.Drawing.Size(108, 32)
+        Me.btnCP.Padding = New System.Windows.Forms.Padding(6, 0, 12, 0)
+        Me.btnCP.Size = New System.Drawing.Size(81, 26)
         Me.btnCP.TabIndex = 89
         Me.btnCP.Text = "C.P.´s"
         Me.btnCP.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -237,11 +247,10 @@ Partial Class frmListagem
         Me.btnApagar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnApagar.Image = CType(resources.GetObject("btnApagar.Image"), System.Drawing.Image)
         Me.btnApagar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnApagar.Location = New System.Drawing.Point(999, 4)
-        Me.btnApagar.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnApagar.Location = New System.Drawing.Point(749, 3)
         Me.btnApagar.Name = "btnApagar"
-        Me.btnApagar.Padding = New System.Windows.Forms.Padding(8, 0, 11, 0)
-        Me.btnApagar.Size = New System.Drawing.Size(108, 32)
+        Me.btnApagar.Padding = New System.Windows.Forms.Padding(6, 0, 8, 0)
+        Me.btnApagar.Size = New System.Drawing.Size(81, 26)
         Me.btnApagar.TabIndex = 2
         Me.btnApagar.Text = "&Apagar"
         Me.btnApagar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -252,11 +261,10 @@ Partial Class frmListagem
         Me.btnRelatorio.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnRelatorio.Image = CType(resources.GetObject("btnRelatorio.Image"), System.Drawing.Image)
         Me.btnRelatorio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnRelatorio.Location = New System.Drawing.Point(767, 4)
-        Me.btnRelatorio.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnRelatorio.Location = New System.Drawing.Point(575, 3)
         Me.btnRelatorio.Name = "btnRelatorio"
-        Me.btnRelatorio.Padding = New System.Windows.Forms.Padding(5, 0, 5, 0)
-        Me.btnRelatorio.Size = New System.Drawing.Size(108, 32)
+        Me.btnRelatorio.Padding = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.btnRelatorio.Size = New System.Drawing.Size(81, 26)
         Me.btnRelatorio.TabIndex = 0
         Me.btnRelatorio.Text = "&Relatório"
         Me.btnRelatorio.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -267,11 +275,10 @@ Partial Class frmListagem
         Me.btnEditar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnEditar.Image = CType(resources.GetObject("btnEditar.Image"), System.Drawing.Image)
         Me.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnEditar.Location = New System.Drawing.Point(1113, 4)
-        Me.btnEditar.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnEditar.Location = New System.Drawing.Point(835, 3)
         Me.btnEditar.Name = "btnEditar"
-        Me.btnEditar.Padding = New System.Windows.Forms.Padding(11, 0, 4, 0)
-        Me.btnEditar.Size = New System.Drawing.Size(108, 32)
+        Me.btnEditar.Padding = New System.Windows.Forms.Padding(8, 0, 3, 0)
+        Me.btnEditar.Size = New System.Drawing.Size(81, 26)
         Me.btnEditar.TabIndex = 3
         Me.btnEditar.Text = "Amostra"
         Me.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -282,11 +289,10 @@ Partial Class frmListagem
         Me.btnNovo.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.btnNovo.Image = CType(resources.GetObject("btnNovo.Image"), System.Drawing.Image)
         Me.btnNovo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnNovo.Location = New System.Drawing.Point(883, 4)
-        Me.btnNovo.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnNovo.Location = New System.Drawing.Point(662, 3)
         Me.btnNovo.Name = "btnNovo"
-        Me.btnNovo.Padding = New System.Windows.Forms.Padding(11, 0, 16, 0)
-        Me.btnNovo.Size = New System.Drawing.Size(108, 32)
+        Me.btnNovo.Padding = New System.Windows.Forms.Padding(8, 0, 12, 0)
+        Me.btnNovo.Size = New System.Drawing.Size(81, 26)
         Me.btnNovo.TabIndex = 1
         Me.btnNovo.Text = "Novo"
         Me.btnNovo.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -298,7 +304,7 @@ Partial Class frmListagem
         Me.tsbMoverFirst.Image = CType(resources.GetObject("tsbMoverFirst.Image"), System.Drawing.Image)
         Me.tsbMoverFirst.Name = "tsbMoverFirst"
         Me.tsbMoverFirst.RightToLeftAutoMirrorImage = True
-        Me.tsbMoverFirst.Size = New System.Drawing.Size(29, 24)
+        Me.tsbMoverFirst.Size = New System.Drawing.Size(24, 24)
         Me.tsbMoverFirst.Text = "Move first"
         '
         'tsbMoverPrevious
@@ -307,7 +313,7 @@ Partial Class frmListagem
         Me.tsbMoverPrevious.Image = CType(resources.GetObject("tsbMoverPrevious.Image"), System.Drawing.Image)
         Me.tsbMoverPrevious.Name = "tsbMoverPrevious"
         Me.tsbMoverPrevious.RightToLeftAutoMirrorImage = True
-        Me.tsbMoverPrevious.Size = New System.Drawing.Size(29, 24)
+        Me.tsbMoverPrevious.Size = New System.Drawing.Size(24, 24)
         Me.tsbMoverPrevious.Text = "Move previous"
         '
         'tsbSeparator1
@@ -321,14 +327,14 @@ Partial Class frmListagem
         Me.tsbPosition.AutoSize = False
         Me.tsbPosition.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.tsbPosition.Name = "tsbPosition"
-        Me.tsbPosition.Size = New System.Drawing.Size(65, 27)
+        Me.tsbPosition.Size = New System.Drawing.Size(50, 23)
         Me.tsbPosition.Text = "0"
         Me.tsbPosition.ToolTipText = "Current position"
         '
         'tsbCount
         '
         Me.tsbCount.Name = "tsbCount"
-        Me.tsbCount.Size = New System.Drawing.Size(48, 24)
+        Me.tsbCount.Size = New System.Drawing.Size(37, 24)
         Me.tsbCount.Text = "de {0}"
         Me.tsbCount.ToolTipText = "Total number of items"
         '
@@ -343,7 +349,7 @@ Partial Class frmListagem
         Me.tsbMoverNext.Image = CType(resources.GetObject("tsbMoverNext.Image"), System.Drawing.Image)
         Me.tsbMoverNext.Name = "tsbMoverNext"
         Me.tsbMoverNext.RightToLeftAutoMirrorImage = True
-        Me.tsbMoverNext.Size = New System.Drawing.Size(29, 24)
+        Me.tsbMoverNext.Size = New System.Drawing.Size(24, 24)
         Me.tsbMoverNext.Text = "Move next"
         '
         'tsbMoverLast
@@ -352,7 +358,7 @@ Partial Class frmListagem
         Me.tsbMoverLast.Image = CType(resources.GetObject("tsbMoverLast.Image"), System.Drawing.Image)
         Me.tsbMoverLast.Name = "tsbMoverLast"
         Me.tsbMoverLast.RightToLeftAutoMirrorImage = True
-        Me.tsbMoverLast.Size = New System.Drawing.Size(29, 24)
+        Me.tsbMoverLast.Size = New System.Drawing.Size(24, 24)
         Me.tsbMoverLast.Text = "Move last"
         '
         'tsbSeparator3
@@ -366,7 +372,7 @@ Partial Class frmListagem
         Me.tsbAdd.Image = CType(resources.GetObject("tsbAdd.Image"), System.Drawing.Image)
         Me.tsbAdd.Name = "tsbAdd"
         Me.tsbAdd.RightToLeftAutoMirrorImage = True
-        Me.tsbAdd.Size = New System.Drawing.Size(29, 24)
+        Me.tsbAdd.Size = New System.Drawing.Size(24, 24)
         Me.tsbAdd.Text = "Add new"
         '
         'tsbDelete
@@ -375,7 +381,7 @@ Partial Class frmListagem
         Me.tsbDelete.Image = CType(resources.GetObject("tsbDelete.Image"), System.Drawing.Image)
         Me.tsbDelete.Name = "tsbDelete"
         Me.tsbDelete.RightToLeftAutoMirrorImage = True
-        Me.tsbDelete.Size = New System.Drawing.Size(29, 24)
+        Me.tsbDelete.Size = New System.Drawing.Size(24, 24)
         Me.tsbDelete.Text = "Delete"
         '
         'tsbSeparator4
@@ -388,53 +394,53 @@ Partial Class frmListagem
         Me.tsbFind.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.tsbFind.Margin = New System.Windows.Forms.Padding(3, 0, 1, 0)
         Me.tsbFind.Name = "tsbFind"
-        Me.tsbFind.Size = New System.Drawing.Size(132, 27)
+        Me.tsbFind.Size = New System.Drawing.Size(100, 27)
         '
         'tsbFindItem
         '
         Me.tsbFindItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.tsbFindItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbFindTodos, Me.tsbFindNome, Me.tsbFindData, Me.tsbFindQteCP, Me.tsbFindResponsavel, Me.tsbFindCompactacao})
+        Me.tsbFindItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsbFindTodos, Me.tsbFindNome, Me.tsbFindObra, Me.tsbFindCliente, Me.tsbFindOperador, Me.tsbFindData, Me.tsbFindQteCP})
         Me.tsbFindItem.Image = CType(resources.GetObject("tsbFindItem.Image"), System.Drawing.Image)
         Me.tsbFindItem.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbFindItem.Name = "tsbFindItem"
-        Me.tsbFindItem.Size = New System.Drawing.Size(39, 24)
+        Me.tsbFindItem.Size = New System.Drawing.Size(36, 24)
         Me.tsbFindItem.Text = "Find"
         '
         'tsbFindTodos
         '
         Me.tsbFindTodos.Name = "tsbFindTodos"
-        Me.tsbFindTodos.Size = New System.Drawing.Size(238, 26)
+        Me.tsbFindTodos.Size = New System.Drawing.Size(180, 22)
         Me.tsbFindTodos.Text = "Todos"
         '
         'tsbFindNome
         '
         Me.tsbFindNome.Name = "tsbFindNome"
-        Me.tsbFindNome.Size = New System.Drawing.Size(238, 26)
+        Me.tsbFindNome.Size = New System.Drawing.Size(180, 22)
         Me.tsbFindNome.Text = "Nome da Amostra"
         '
         'tsbFindData
         '
         Me.tsbFindData.Name = "tsbFindData"
-        Me.tsbFindData.Size = New System.Drawing.Size(238, 26)
+        Me.tsbFindData.Size = New System.Drawing.Size(180, 22)
         Me.tsbFindData.Text = "Data da Amostra"
         '
         'tsbFindQteCP
         '
         Me.tsbFindQteCP.Name = "tsbFindQteCP"
-        Me.tsbFindQteCP.Size = New System.Drawing.Size(238, 26)
+        Me.tsbFindQteCP.Size = New System.Drawing.Size(180, 22)
         Me.tsbFindQteCP.Text = "Qte de CP´s"
         '
-        'tsbFindResponsavel
+        'tsbFindOperador
         '
-        Me.tsbFindResponsavel.Name = "tsbFindResponsavel"
-        Me.tsbFindResponsavel.Size = New System.Drawing.Size(238, 26)
-        Me.tsbFindResponsavel.Text = "Responsável"
+        Me.tsbFindOperador.Name = "tsbFindOperador"
+        Me.tsbFindOperador.Size = New System.Drawing.Size(180, 22)
+        Me.tsbFindOperador.Text = "Operador"
         '
-        'tsbFindCompactacao
+        'tsbFindObra
         '
-        Me.tsbFindCompactacao.Name = "tsbFindCompactacao"
-        Me.tsbFindCompactacao.Size = New System.Drawing.Size(238, 26)
-        Me.tsbFindCompactacao.Text = "Energia Compactação"
+        Me.tsbFindObra.Name = "tsbFindObra"
+        Me.tsbFindObra.Size = New System.Drawing.Size(180, 22)
+        Me.tsbFindObra.Text = "Obra"
         '
         'bdnNavegator
         '
@@ -451,7 +457,7 @@ Partial Class frmListagem
         Me.bdnNavegator.MovePreviousItem = Me.tsbMoverPrevious
         Me.bdnNavegator.Name = "bdnNavegator"
         Me.bdnNavegator.PositionItem = Me.tsbPosition
-        Me.bdnNavegator.Size = New System.Drawing.Size(1353, 27)
+        Me.bdnNavegator.Size = New System.Drawing.Size(1015, 27)
         Me.bdnNavegator.TabIndex = 54
         '
         'tsbClean
@@ -460,24 +466,29 @@ Partial Class frmListagem
         Me.tsbClean.Image = CType(resources.GetObject("tsbClean.Image"), System.Drawing.Image)
         Me.tsbClean.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.tsbClean.Name = "tsbClean"
-        Me.tsbClean.Size = New System.Drawing.Size(29, 24)
+        Me.tsbClean.Size = New System.Drawing.Size(24, 24)
         Me.tsbClean.Text = "Limpar Pesquisa"
         Me.tsbClean.Visible = False
         '
+        'tsbFindCliente
+        '
+        Me.tsbFindCliente.Name = "tsbFindCliente"
+        Me.tsbFindCliente.Size = New System.Drawing.Size(180, 22)
+        Me.tsbFindCliente.Text = "Cliente"
+        '
         'frmListagem
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.WhiteSmoke
         Me.CancelButton = Me.btnOk
-        Me.ClientSize = New System.Drawing.Size(1353, 780)
+        Me.ClientSize = New System.Drawing.Size(1015, 634)
         Me.Controls.Add(Me.btnOk)
         Me.Controls.Add(Me.pnlPanel)
         Me.Controls.Add(Me.bdnNavegator)
         Me.Controls.Add(Me.dtgGrid)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmListagem"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Amostras para ensaio"
@@ -520,12 +531,14 @@ Partial Class frmListagem
     Friend WithEvents btnCP As System.Windows.Forms.Button
     Friend WithEvents tsbFindTodos As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents tsbClean As System.Windows.Forms.ToolStripButton
-    Friend WithEvents IdAmostra As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Nome As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Responsavel As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Data As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Compactacao As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents QteCPs As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents tsbFindResponsavel As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents tsbFindCompactacao As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents tsbFindOperador As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents tsbFindObra As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents IdAmostra As DataGridViewTextBoxColumn
+    Friend WithEvents Nome As DataGridViewTextBoxColumn
+    Friend WithEvents Obra As DataGridViewTextBoxColumn
+    Friend WithEvents Cliente As DataGridViewTextBoxColumn
+    Friend WithEvents Operador As DataGridViewTextBoxColumn
+    Friend WithEvents Data As DataGridViewTextBoxColumn
+    Friend WithEvents QteCPs As DataGridViewTextBoxColumn
+    Friend WithEvents tsbFindCliente As ToolStripMenuItem
 End Class

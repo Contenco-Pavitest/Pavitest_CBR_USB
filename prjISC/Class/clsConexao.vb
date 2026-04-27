@@ -3,6 +3,7 @@ Option Explicit On
 
 Imports System.Data
 Imports System.Data.OleDb
+Imports DAO
 
 Friend Class clsConexao
 
@@ -281,6 +282,135 @@ Friend Class clsConexao
         End Try
 
     End Sub
+
+    Public Function ExisteColuna(ByVal strNomeColuna As String, ByVal strNomeTabela As String) As Boolean
+        Dim comandoSql As String
+        Dim ds As New DataSet()
+
+        Try
+            Dim strConexao As String = "Provider=Microsoft.Jet.OLEDB.4.0; " & "Data Source = " & strCaminho & "\" & strBaseDados
+            comandoSql = "SELECT * From " & strNomeTabela
+            Dim da As New OleDbDataAdapter(comandoSql, strConexao)
+            da.Fill(ds, "tblCPs")
+
+            If ds.Tables(0).Columns.Contains(strNomeColuna) Then
+                ExisteColuna = True
+            Else
+                ExisteColuna = False
+            End If
+
+            da.Dispose()
+            ds.Dispose()
+
+        Catch ex As Exception
+            ExisteColuna = False
+        End Try
+    End Function
+
+
+    Public Function GetTipoColuna(coluna As String, tabela As String) As Type
+
+        Dim schemaTable As DataTable = oConnection.GetSchema("Columns", New String() {Nothing, Nothing, tabela, coluna})
+
+        ' Se o schema não retornar nenhuma linha, a coluna ou a tabela não existem.
+        If schemaTable.Rows.Count = 0 Then
+            Throw New ArgumentException($"A coluna '{coluna}' ou a tabela '{tabela}' não existem.")
+        End If
+
+        ' A coluna "DATA_TYPE" no schema contém um código numérico que representa o tipo de dado.
+        ' O tipo deste valor é um OleDbType (se estiver usando OleDb).
+        Dim tipoDb As OleDbType = CType(schemaTable.Rows(0)("DATA_TYPE"), OleDbType)
+
+        Return GetDataTypeFromBD(tipoDb)
+
+    End Function
+
+    Private Function GetDataTypeFromBD(tipoDb As OleDbType) As Type
+
+        ' Agora, mapeamos o tipo do banco de dados (OleDbType) para um System.Type do .NET
+        Select Case tipoDb
+            Case OleDbType.VarChar, OleDbType.LongVarChar, OleDbType.WChar, OleDbType.LongVarWChar, OleDbType.BSTR, OleDbType.Char
+                Return GetType(String)
+
+            Case OleDbType.Integer
+                Return GetType(Integer) ' Equivalente a Int32
+
+            Case OleDbType.SmallInt
+                Return GetType(Short) ' Equivalente a Int16
+
+            Case OleDbType.BigInt
+                Return GetType(Long) ' Equivalente a Int64
+
+            Case OleDbType.Single
+                Return GetType(Single) ' Equivalente a float em C#
+
+            Case OleDbType.Double, OleDbType.Currency
+                Return GetType(Double)
+
+            Case OleDbType.Decimal, OleDbType.Numeric
+                Return GetType(Decimal)
+
+            Case OleDbType.Date, OleDbType.DBDate, OleDbType.DBTimeStamp
+                Return GetType(Date) ' Equivalente a DateTime em C#
+
+            Case OleDbType.Boolean
+                Return GetType(Boolean)
+
+            Case OleDbType.Binary, OleDbType.LongVarBinary
+                Return GetType(Byte())
+
+            Case OleDbType.Guid
+                Return GetType(Guid)
+
+                ' Caso o tipo não esteja mapeado, lança uma exceção para evitar comportamento inesperado.
+            Case Else
+                Throw New ArgumentException($"O tipo de dado '{tipoDb}' não possui um mapeamento definido.")
+        End Select
+    End Function
+
+    Public Function AdicionarColuna(ByVal strNomeColuna As String, ByVal strNomeTabela As String, ByVal tipoColuna As String) As Boolean
+        Dim comandoSql As String
+
+        Try
+
+            comandoSql = "ALTER TABLE [" & strNomeTabela & "] ADD [" & strNomeColuna & "] " & tipoColuna & " ;"
+            Call usrConexao.ComandoExecucao(comandoSql)
+
+        Catch ex As Exception
+            AdicionarColuna = False
+            Throw New Exception(" AdicionarColuna() " & ex.Message)
+        End Try
+    End Function
+
+    Public Function AlterarNomeColuna(strNomeTabela As String, strNovoNome As String, strNomeColuna As String) As Boolean
+
+        'Não é possível alterar diretamente o nome da coluna via string SQL pois o provedor é versão inferior a 12.0
+        Dim dbEngine As New DBEngine()
+        Dim db As Database = dbEngine.OpenDatabase(String.Concat(strCaminho, $"\\{strBaseDados}"))
+
+        Try
+            db.TableDefs(strNomeTabela).Fields(strNomeColuna).Name = strNovoNome
+            db.Close()
+
+            Return True
+
+        Catch ex As Exception
+            MsgBox("AlterarNomeColuna" & Chr(13) & ex.Message)
+            Return False
+        End Try
+    End Function
+
+    Public Function DeletarColuna(strNomeTabela As String, strNomeColuna As String) As Boolean
+
+        Dim comandoSql = "ALTER TABLE  [" & strNomeTabela & "] DROP COLUMN " & strNomeColuna & ";"
+        Try
+            Call usrConexao.ComandoExecucao(comandoSql)
+            Return True
+        Catch ex As Exception
+            MsgBox("DeletarColuna" & Chr(13) & ex.Message)
+            Return False
+        End Try
+    End Function
 
 #End Region
 

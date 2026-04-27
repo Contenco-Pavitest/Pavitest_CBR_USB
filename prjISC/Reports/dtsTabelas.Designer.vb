@@ -401,6 +401,8 @@ Partial Public Class dtsTabelas
         
         Private columnISC2 As Global.System.Data.DataColumn
         
+        Private columnIdCP As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -629,6 +631,14 @@ Partial Public Class dtsTabelas
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property IdCPColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIdCP
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -689,9 +699,10 @@ Partial Public Class dtsTabelas
                     ByVal PCorrigida1 As String,  _
                     ByVal PCorrigida2 As String,  _
                     ByVal ISC1 As String,  _
-                    ByVal ISC2 As String) As dttCPsRow
+                    ByVal ISC2 As String,  _
+                    ByVal IdCP As String) As dttCPsRow
             Dim rowdttCPsRow As dttCPsRow = CType(Me.NewRow,dttCPsRow)
-            Dim columnValuesArray() As Object = New Object() {Cilindro, Capsula, Peso, Volume, UmidoCilindro, SoloUmido, MassaUmido, UmidoTara, SecoTara, Agua, Tara, SoloSeco, Umidade, MassaSeca, Diferenca, Altura, Expansao, AguaAbsorvida, PCalculada1, PCalculada2, PCorrigida1, PCorrigida2, ISC1, ISC2}
+            Dim columnValuesArray() As Object = New Object() {Cilindro, Capsula, Peso, Volume, UmidoCilindro, SoloUmido, MassaUmido, UmidoTara, SecoTara, Agua, Tara, SoloSeco, Umidade, MassaSeca, Diferenca, Altura, Expansao, AguaAbsorvida, PCalculada1, PCalculada2, PCorrigida1, PCorrigida2, ISC1, ISC2, IdCP}
             rowdttCPsRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowdttCPsRow)
             Return rowdttCPsRow
@@ -738,6 +749,7 @@ Partial Public Class dtsTabelas
             Me.columnPCorrigida2 = MyBase.Columns("PCorrigida2")
             Me.columnISC1 = MyBase.Columns("ISC1")
             Me.columnISC2 = MyBase.Columns("ISC2")
+            Me.columnIdCP = MyBase.Columns("IdCP")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -791,6 +803,8 @@ Partial Public Class dtsTabelas
             MyBase.Columns.Add(Me.columnISC1)
             Me.columnISC2 = New Global.System.Data.DataColumn("ISC2", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnISC2)
+            Me.columnIdCP = New Global.System.Data.DataColumn("IdCP", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIdCP)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -942,6 +956,12 @@ Partial Public Class dtsTabelas
         
         Private columnQteCPs As Global.System.Data.DataColumn
         
+        Private columnObra As Global.System.Data.DataColumn
+        
+        Private columnCliente As Global.System.Data.DataColumn
+        
+        Private columnOperador As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -1034,6 +1054,30 @@ Partial Public Class dtsTabelas
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property ObraColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnObra
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property ClienteColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCliente
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property OperadorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOperador
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1070,9 +1114,9 @@ Partial Public Class dtsTabelas
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AdddttAmostraRow(ByVal Nome As String, ByVal Numero As String, ByVal Programa As String, ByVal Responsavel As String, ByVal Data As String, ByVal Compactacao As String, ByVal QteCPs As String) As dttAmostraRow
+        Public Overloads Function AdddttAmostraRow(ByVal Nome As String, ByVal Numero As String, ByVal Programa As String, ByVal Responsavel As String, ByVal Data As String, ByVal Compactacao As String, ByVal QteCPs As String, ByVal Obra As String, ByVal Cliente As String, ByVal Operador As String) As dttAmostraRow
             Dim rowdttAmostraRow As dttAmostraRow = CType(Me.NewRow,dttAmostraRow)
-            Dim columnValuesArray() As Object = New Object() {Nome, Numero, Programa, Responsavel, Data, Compactacao, QteCPs}
+            Dim columnValuesArray() As Object = New Object() {Nome, Numero, Programa, Responsavel, Data, Compactacao, QteCPs, Obra, Cliente, Operador}
             rowdttAmostraRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowdttAmostraRow)
             Return rowdttAmostraRow
@@ -1102,6 +1146,9 @@ Partial Public Class dtsTabelas
             Me.columnData = MyBase.Columns("Data")
             Me.columnCompactacao = MyBase.Columns("Compactacao")
             Me.columnQteCPs = MyBase.Columns("QteCPs")
+            Me.columnObra = MyBase.Columns("Obra")
+            Me.columnCliente = MyBase.Columns("Cliente")
+            Me.columnOperador = MyBase.Columns("Operador")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1121,6 +1168,12 @@ Partial Public Class dtsTabelas
             MyBase.Columns.Add(Me.columnCompactacao)
             Me.columnQteCPs = New Global.System.Data.DataColumn("QteCPs", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnQteCPs)
+            Me.columnObra = New Global.System.Data.DataColumn("Obra", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnObra)
+            Me.columnCliente = New Global.System.Data.DataColumn("Cliente", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCliente)
+            Me.columnOperador = New Global.System.Data.DataColumn("Operador", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOperador)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1931,6 +1984,21 @@ Partial Public Class dtsTabelas
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property IdCP() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledttCPs.IdCPColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'IdCP' na tabela 'dttCPs' é DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledttCPs.IdCPColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsCilindroNull() As Boolean
             Return Me.IsNull(Me.tabledttCPs.CilindroColumn)
         End Function
@@ -2216,6 +2284,18 @@ Partial Public Class dtsTabelas
         Public Sub SetISC2Null()
             Me(Me.tabledttCPs.ISC2Column) = Global.System.Convert.DBNull
         End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsIdCPNull() As Boolean
+            Return Me.IsNull(Me.tabledttCPs.IdCPColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetIdCPNull()
+            Me(Me.tabledttCPs.IdCPColumn) = Global.System.Convert.DBNull
+        End Sub
     End Class
     
     '''<summary>
@@ -2340,6 +2420,51 @@ Partial Public Class dtsTabelas
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Obra() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledttAmostra.ObraColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'Obra' na tabela 'dttAmostra' é DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledttAmostra.ObraColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Cliente() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledttAmostra.ClienteColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'Cliente' na tabela 'dttAmostra' é DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledttAmostra.ClienteColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Operador() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledttAmostra.OperadorColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("O valor da coluna 'Operador' na tabela 'dttAmostra' é DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledttAmostra.OperadorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsNomeNull() As Boolean
             Return Me.IsNull(Me.tabledttAmostra.NomeColumn)
         End Function
@@ -2420,6 +2545,42 @@ Partial Public Class dtsTabelas
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetQteCPsNull()
             Me(Me.tabledttAmostra.QteCPsColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsObraNull() As Boolean
+            Return Me.IsNull(Me.tabledttAmostra.ObraColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetObraNull()
+            Me(Me.tabledttAmostra.ObraColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsClienteNull() As Boolean
+            Return Me.IsNull(Me.tabledttAmostra.ClienteColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetClienteNull()
+            Me(Me.tabledttAmostra.ClienteColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsOperadorNull() As Boolean
+            Return Me.IsNull(Me.tabledttAmostra.OperadorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetOperadorNull()
+            Me(Me.tabledttAmostra.OperadorColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
