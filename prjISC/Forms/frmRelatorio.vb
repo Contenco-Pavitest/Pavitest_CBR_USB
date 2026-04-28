@@ -1,5 +1,6 @@
 ﻿Imports System.Data.OleDb
 Imports System.IO
+Imports CrystalDecisions.CrystalReports.Engine
 
 Public Class frmRelatorio
 
@@ -24,6 +25,8 @@ Public Class frmRelatorio
     Private Sub CrystalReport_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cryViewer.Load
 
         Try
+            Call SuprimirSection()
+
             Call AjusteUnidadeMedida()
 
             'Chamar a rotina para carregar os valores dos campos
@@ -295,6 +298,44 @@ Public Class frmRelatorio
                         .SetParameterValue("PPadrao2", "105,20")
                     End If
 
+                    'Etapa de Compactação
+                    If Not IsDBNull(odbReader("UmidoCilindro")) Then .SetParameterValue("SoloUmidoCilindro", odbReader("UmidoCilindro") & " g") Else .SetParameterValue("SoloUmidoCilindro", "")
+                    If Not IsDBNull(odbReader("SoloUmido")) Then .SetParameterValue("SoloUmido", odbReader("SoloUmido") & " g") Else .SetParameterValue("SoloUmido", "")
+                    If Not IsDBNull(odbReader("MassaUmido")) Then .SetParameterValue("MassaAparenteUmida", odbReader("MassaUmido") & " g/cm³") Else .SetParameterValue("MassaAparenteUmida", "")
+                    If Not IsDBNull(odbReader("MassaSeca")) Then .SetParameterValue("MassaAparenteSeca", odbReader("MassaSeca") & " g/cm³") Else .SetParameterValue("MassaAparenteSeca", "")
+                    If Not IsDBNull(odbReader("UmidoTara")) Then .SetParameterValue("SoloUmidoTara", odbReader("UmidoTara") & " g") Else .SetParameterValue("SoloUmidoTara", "")
+                    If Not IsDBNull(odbReader("SecoTara")) Then .SetParameterValue("SoloSecoTara", odbReader("SecoTara") & " g") Else .SetParameterValue("SoloSecoTara", "")
+                    If Not IsDBNull(odbReader("Agua")) Then .SetParameterValue("Agua", odbReader("Agua") & " g") Else .SetParameterValue("Agua", "")
+                    If Not IsDBNull(odbReader("Tara")) Then .SetParameterValue("Tara", odbReader("Tara") & " g") Else .SetParameterValue("Tara", "")
+                    If Not IsDBNull(odbReader("SoloSeco")) Then .SetParameterValue("SoloSeco", odbReader("SoloSeco") & " g") Else .SetParameterValue("SoloSeco", "")
+                    If Not IsDBNull(odbReader("Umidade")) Then .SetParameterValue("Umidade", odbReader("Umidade") & " %") Else .SetParameterValue("Umidade", "")
+
+                    'Ensaio de Expansão
+                    If Not IsDBNull(odbReader("Data1")) Then .SetParameterValue("Data1", odbReader("Data1")) Else .SetParameterValue("Data1", "")
+                    If Not IsDBNull(odbReader("Data2")) Then .SetParameterValue("Data2", odbReader("Data2")) Else .SetParameterValue("Data2", "")
+                    If Not IsDBNull(odbReader("Data3")) Then .SetParameterValue("Data3", odbReader("Data3")) Else .SetParameterValue("Data3", "")
+                    If Not IsDBNull(odbReader("Data4")) Then .SetParameterValue("Data4", odbReader("Data4")) Else .SetParameterValue("Data4", "")
+                    If Not IsDBNull(odbReader("Data5")) Then .SetParameterValue("Data5", odbReader("Data5")) Else .SetParameterValue("Data5", "")
+
+                    If Not IsDBNull(odbReader("Hora1")) Then .SetParameterValue("Hora1", odbReader("Hora1")) Else .SetParameterValue("Hora1", "")
+                    If Not IsDBNull(odbReader("Hora2")) Then .SetParameterValue("Hora2", odbReader("Hora2")) Else .SetParameterValue("Hora2", "")
+                    If Not IsDBNull(odbReader("Hora3")) Then .SetParameterValue("Hora3", odbReader("Hora3")) Else .SetParameterValue("Hora3", "")
+                    If Not IsDBNull(odbReader("Hora4")) Then .SetParameterValue("Hora4", odbReader("Hora4")) Else .SetParameterValue("Hora4", "")
+                    If Not IsDBNull(odbReader("Hora5")) Then .SetParameterValue("Hora5", odbReader("Hora5")) Else .SetParameterValue("Hora5", "")
+
+                    If Not IsDBNull(odbReader("Leitura1")) Then .SetParameterValue("Leitura1", odbReader("Leitura1")) Else .SetParameterValue("Leitura1", "")
+                    If Not IsDBNull(odbReader("Leitura2")) Then .SetParameterValue("Leitura2", odbReader("Leitura2")) Else .SetParameterValue("Leitura2", "")
+                    If Not IsDBNull(odbReader("Leitura3")) Then .SetParameterValue("Leitura3", odbReader("Leitura3")) Else .SetParameterValue("Leitura3", "")
+                    If Not IsDBNull(odbReader("Leitura4")) Then .SetParameterValue("Leitura4", odbReader("Leitura4")) Else .SetParameterValue("Leitura4", "")
+                    If Not IsDBNull(odbReader("Leitura5")) Then .SetParameterValue("Leitura5", odbReader("Leitura5")) Else .SetParameterValue("Leitura5", "")
+
+                    If Not IsDBNull(odbReader("MoldeUmidoInicial")) Then .SetParameterValue("MoldeUmidoInicial", odbReader("MoldeUmidoInicial") & " g") Else .SetParameterValue("MoldeUmidoInicial", "")
+                    If Not IsDBNull(odbReader("MoldeUmidoFinal")) Then .SetParameterValue("MoldeUmidoFinal", odbReader("MoldeUmidoFinal") & " g") Else .SetParameterValue("MoldeUmidoFinal", "")
+                    If Not IsDBNull(odbReader("Expansao")) Then .SetParameterValue("Expansao", odbReader("Expansao") & " %") Else .SetParameterValue("Expansao", "")
+                    If Not IsDBNull(odbReader("Diferenca")) Then .SetParameterValue("Diferenca", odbReader("Diferenca") & " mm") Else .SetParameterValue("Diferenca", "")
+                    If Not IsDBNull(odbReader("AguaAbsorvida")) Then .SetParameterValue("AguaAbsorvida", odbReader("AguaAbsorvida") & " g") Else .SetParameterValue("AguaAbsorvida", "")
+
+
                 End With
             End If
 
@@ -529,6 +570,63 @@ Public Class frmRelatorio
 
         Catch ex As Exception
             MsgBox("AjusteUnidadeMedida" & Chr(13) & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub SuprimirSection()
+        Try
+            Dim strSql As String
+            Dim odbReader As OleDbDataReader
+
+            Dim blnTemCompactacao As Boolean = False
+            Dim blnTemExpansao As Boolean = False
+
+
+            strSql = "SELECT * FROM [tblCPs] " _
+            & "WHERE IdAmostra = " & intIdAmostra & " AND IdCP = " & intIdCP
+
+            odbReader = usrConexao.ComandoLeitura(strSql)
+            odbReader.Read()
+
+            If Not IsDBNull(odbReader("Umidade")) AndAlso Not IsDBNull(odbReader("MassaSeca")) Then
+                blnTemCompactacao = True
+            End If
+
+            If Not IsDBNull(odbReader("Expansao")) Then
+                blnTemExpansao = True
+            End If
+
+
+            Dim sectionCompactacao As Section = cryEnsaios.ReportDefinition.Sections("DetailSection1")
+            Dim sectionExpansao As Section = cryEnsaios.ReportDefinition.Sections("DetailSection2")
+
+
+            If Not blnTemCompactacao And Not blnTemExpansao Then
+                sectionCompactacao.SectionFormat.EnableSuppress = True
+                sectionExpansao.SectionFormat.EnableSuppress = True
+                Exit Sub
+            End If
+
+
+            Dim respCompactacao As DialogResult = DialogResult.No
+            Dim respExpansao As DialogResult = DialogResult.No
+
+
+            If blnTemCompactacao Then
+                respCompactacao = MsgBox("Deseja adicionar a etapa de COMPACTAÇÃO no relatório?", MsgBoxStyle.YesNo + MsgBoxStyle.Question)
+            End If
+
+
+            If blnTemExpansao Then
+                respExpansao = MsgBox("Deseja adicionar a etapa de EXPANSÃO no relatório?", MsgBoxStyle.YesNo + MsgBoxStyle.Question)
+            End If
+
+
+            sectionCompactacao.SectionFormat.EnableSuppress = Not (respCompactacao = DialogResult.Yes)
+            sectionExpansao.SectionFormat.EnableSuppress = Not (respExpansao = DialogResult.Yes)
+
+        Catch ex As Exception
+            MsgBox("SuprimirSection" & Chr(13) & ex.Message)
         End Try
     End Sub
 
