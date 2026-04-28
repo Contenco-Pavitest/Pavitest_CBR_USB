@@ -368,7 +368,7 @@ Partial Class mdiPrincipal
         Me.MinimumSize = New System.Drawing.Size(1089, 657)
         Me.Name = "mdiPrincipal"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Pavitest CBR (ISC) - 3.8B.BK.EF-00.04"
+        Me.Text = "Pavitest CBR (ISC) - 3.8B.BK.EF-00.05"
         Me.mnuMenu.ResumeLayout(False)
         Me.mnuMenu.PerformLayout()
         Me.tlsBarraFerramenta.ResumeLayout(False)
