@@ -260,9 +260,9 @@ Public Class frmRelatorio
                     'Dados cadstrais do corpo de prova
                     If Not IsDBNull(odbReader("Cilindro".ToString)) Then .SetParameterValue("Cilindro", odbReader("Cilindro".ToString)) Else .SetParameterValue("Cilindro", "")
                     If Not IsDBNull(odbReader("Capsula".ToString)) Then .SetParameterValue("Capsula", odbReader("Capsula".ToString)) Else .SetParameterValue("Capsula", "")
-                    If Not IsDBNull(odbReader("Peso".ToString)) Then .SetParameterValue("Peso", odbReader("Peso".ToString)) Else .SetParameterValue("Peso", "")
-                    If Not IsDBNull(odbReader("Volume".ToString)) Then .SetParameterValue("Volume", odbReader("Volume".ToString)) Else .SetParameterValue("Volume", "")
-                    If Not IsDBNull(odbReader("Altura".ToString)) Then .SetParameterValue("Altura", odbReader("Altura".ToString)) Else .SetParameterValue("Altura", "")
+                    If Not IsDBNull(odbReader("Peso".ToString)) Then .SetParameterValue("Peso", odbReader("Peso".ToString) & " g") Else .SetParameterValue("Peso", "")
+                    If Not IsDBNull(odbReader("Volume".ToString)) Then .SetParameterValue("Volume", odbReader("Volume".ToString) & " cm³") Else .SetParameterValue("Volume", "")
+                    If Not IsDBNull(odbReader("Altura".ToString)) Then .SetParameterValue("Altura", odbReader("Altura".ToString) & " mm") Else .SetParameterValue("Altura", "")
 
 
                     If Not IsDBNull(odbReader("ISC1".ToString)) Then .SetParameterValue("ISC1", FormatNumber(odbReader("ISC1".ToString), 2)) Else .SetParameterValue("ISC1", "")
